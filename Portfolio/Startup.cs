@@ -69,8 +69,19 @@ namespace Portfolio
             app.UseMvc(routes =>
             {
                 routes.MapRoute("createProject", "project/Create",
-                    defaults: new { controller = "Project", action = "Something" });
+                    defaults: new { controller = "Project", action = "Create" });
 
+                routes.MapRoute("allProjects", "project/All",
+                    defaults: new { controller = "Project", action = "All" });
+
+                routes.MapRoute("deleteProject", "project/Delete/{*id}",
+                    defaults: new { controller = "Project", action = "Delete" });
+
+                routes.MapRoute("editProjectGet", "project/Edit",
+                    defaults: new { controller = "Project", action = "Edit" });
+
+                routes.MapRoute("editProjectPost", "project/Edit/{*id}",
+                    defaults: new { controller = "Project", action = "Edit" });
 
                 routes.MapRoute("project", "project/{*id}",
                     defaults: new { controller = "Project", action = "Index" });

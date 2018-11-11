@@ -13,9 +13,9 @@
     @foreach (var project in Model.Projects)
     {
         <div class="card">
-            <img class="card-img-top" src="@project.ImageThumbnailUrl" alt="Project Thumbnail">
+            <img class="card-img-top img-thumbnail" src="@project.ImageUrl" alt="Project Thumbnail">
             <div class="card-body">
-                <h5 class="card-title">@project.Title</h5>
+                <a asp-controller="Project" asp-action="Index" asp-route-id="@project.Id"><h5 class="card-title">@project.Title</h5></a>
                 <p class="card-text">@project.ShortDescription</p>
             </div>
             <div class="card-footer">

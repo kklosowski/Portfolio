@@ -4,5 +4,18 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Project details</h2>
-
+<div class="container">
+    <div class="row">        
+        <div class="col-md">
+            <h1 class="card-title">@Model.Title</h1>
+            <p class="lead">@Model.ShortDescription</p>
+            <a href="@Model.GithubUrl">Github</a>
+        </div>
+        <div class="col-md">
+            <img class="img-fluid" src="@Model.ImageUrl" alt="Project Thumbnail">
+        </div>
+    </div>
+    <div class="row">
+        <p>@Model.LongDescription</p>
+    </div>
+</div>

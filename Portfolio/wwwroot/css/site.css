@@ -1,7 +1,7 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
 for details on configuring this project to bundle and minify static web assets. */
 body {
-    padding-top: 0px;
+    padding-top: 0;
     padding-bottom: 20px;
 }
 
@@ -48,4 +48,10 @@ body {
     -webkit-box-shadow: 0 4px 6px -6px gray;
     -moz-box-shadow: 0 4px 6px -6px gray;
     box-shadow: 0 4px 6px -6px gray;
+
+    padding: 5px;
+}
+
+.navbar {
+    margin-bottom: 30px;
 }

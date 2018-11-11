@@ -1,0 +1,22 @@
+﻿@model List<Project>
+
+@{
+    ViewData["Title"] = "All";
+}
+<table class="table">
+
+    @foreach (var project in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => project.Title)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@project.Id">Edit</a> |
+                <a asp-action="Index" asp-route-id="@project.Id">Display</a> |
+                <a asp-action="Delete" asp-route-id="@project.Id">Delete</a>
+            </td>
+        </tr>
+    }
+
+</table>

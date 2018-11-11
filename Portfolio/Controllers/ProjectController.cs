@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -94,6 +95,14 @@ namespace Portfolio.Controllers
             return View(project);
         }
 
+        // GET: Project/All
+        public IActionResult All()
+        {
+            List<Project> projects =_applicationDbContext.Projects.ToList();
+
+            return View(projects);
+        }
+
         // GET: Project/Delete/{id}
         public async Task<IActionResult> Delete(int? id)
         {
@@ -117,7 +126,7 @@ namespace Portfolio.Controllers
             var project = await _applicationDbContext.Projects.FindAsync(id);
             _applicationDbContext.Projects.Remove(project);
             await _applicationDbContext.SaveChangesAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("All", "Project");
         }
     }
 }
