@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Portfolio.Models;
 
 namespace Portfolio.Data
 {
@@ -12,5 +13,7 @@ namespace Portfolio.Data
             : base(options)
         {
         }
+
+        public DbSet<Project> Projects { get; set; }
     }
 }

@@ -10,23 +10,23 @@ namespace Portfolio.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IProjectRepository _projectRepository;
+
+        public HomeController(IProjectRepository projectRepository)
+        {
+            _projectRepository = projectRepository;
+        }
+
         public IActionResult Index()
         {
-            return View();
-        }
+            var projects = _projectRepository.GetAllProjects().OrderBy(x => x.Title);
 
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
+            var homeViewModel = new HomeViewModel()
+            {
+                Projects = projects.ToList(),
+            };
 
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
+            return View(homeViewModel);
         }
 
         public IActionResult Privacy()

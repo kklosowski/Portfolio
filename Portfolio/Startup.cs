@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Portfolio.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Portfolio.Controllers;
 
 namespace Portfolio
 {
@@ -39,6 +40,8 @@ namespace Portfolio
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddTransient<IProjectRepository, ProjectRepository>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
