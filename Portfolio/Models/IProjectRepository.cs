@@ -8,5 +8,8 @@ namespace Portfolio.Controllers
     {
         IEnumerable<Project> GetAllProjects();
         Project GetProjectById(int projectId);
+        bool HasProjectWithId(int projectId);
+        void AddProject(Project project);
+        void UpdateProject(Project project);
     }
 }

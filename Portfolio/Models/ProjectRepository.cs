@@ -25,5 +25,21 @@ namespace Portfolio.Data
         {
             return _applicationDbContext.Projects.FirstOrDefault(x => x.Id == projectId);
         }
+
+        public bool HasProjectWithId(int projectId)
+        {
+            return _applicationDbContext.Projects.Any(x => x.Id == projectId);
+        }
+
+        public void AddProject(Project project)
+        {
+            _applicationDbContext.Projects.Add(project);
+            _applicationDbContext.SaveChanges();
+        }
+
+        public void UpdateProject(Project project)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

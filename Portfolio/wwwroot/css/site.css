@@ -1,7 +1,7 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
 for details on configuring this project to bundle and minify static web assets. */
 body {
-    padding-top: 50px;
+    padding-top: 0px;
     padding-bottom: 20px;
 }
 
@@ -34,4 +34,18 @@ body {
     .carousel-caption {
         display: none;
     }
+}
+
+.card {
+    width: 18rem;
+    min-width: 20rem;
+    max-width: 30rem;
+    max-height: 40rem;
+    margin: 20px;
+}
+
+.card-img-top {
+    -webkit-box-shadow: 0 4px 6px -6px gray;
+    -moz-box-shadow: 0 4px 6px -6px gray;
+    box-shadow: 0 4px 6px -6px gray;
 }
