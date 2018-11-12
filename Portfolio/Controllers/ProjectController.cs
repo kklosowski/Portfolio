@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Portfolio.Data;
@@ -30,6 +31,7 @@ namespace Portfolio.Controllers
         }
 
         //GET: Project/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -37,6 +39,7 @@ namespace Portfolio.Controllers
 
         // POST: Project/Create
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
             [Bind("Id, Title, ShortDescription, LongDescription, ImageUrl, ImageThumbnailUrl, GithubUrl")]
@@ -53,6 +56,7 @@ namespace Portfolio.Controllers
         }
 
         // GET: Project/Edit/{id}
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id.HasValue)
@@ -68,6 +72,7 @@ namespace Portfolio.Controllers
 
         //POST Project/Edit/{id}
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id,
             [Bind("Id, Title, ShortDescription, LongDescription, ImageUrl, ImageThumbnailUrl, GithubUrl")]
@@ -98,12 +103,13 @@ namespace Portfolio.Controllers
         // GET: Project/All
         public IActionResult All()
         {
-            List<Project> projects =_applicationDbContext.Projects.ToList();
+            var projects = _applicationDbContext.Projects.ToList();
 
             return View(projects);
         }
 
         // GET: Project/Delete/{id}
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id.HasValue)
@@ -119,6 +125,7 @@ namespace Portfolio.Controllers
 
         // POST: Project/Delete/{id}
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -126,6 +133,7 @@ namespace Portfolio.Controllers
             var project = await _applicationDbContext.Projects.FindAsync(id);
             _applicationDbContext.Projects.Remove(project);
             await _applicationDbContext.SaveChangesAsync();
+
             return RedirectToAction("All", "Project");
         }
     }
