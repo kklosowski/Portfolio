@@ -1,17 +1,23 @@
-﻿@model Portfolio.ViewModels.UsersAllViewModel
+﻿@model Microsoft.AspNetCore.Identity.UserManager<Microsoft.AspNetCore.Identity.IdentityUser>
 
 <table class="table">
     <tr>
         <th>Email</th>
         <th>Username</th>
+        <th>Roles</th>
     </tr>
 
-    @foreach (var user in Model.Users)
+    @foreach (var user in Model.Users.ToList())
     {
         <tr>
             <td>@user.Email</td>
             <td>@user.UserName</td>
-            <td>@Model.RoleManager.FindByIdAsync(@user.Id)</td>
+            <td>
+                @foreach (var role in Model.GetRolesAsync(user).Result)
+                {
+                    @role
+                }
+            </td>
         </tr>
     }
 </table>

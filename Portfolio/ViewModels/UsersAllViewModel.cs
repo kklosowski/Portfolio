@@ -9,6 +9,6 @@ namespace Portfolio.ViewModels
     public class UsersAllViewModel
     {
         public IEnumerable<IdentityUser> Users { get; set; }
-        public RoleManager<IdentityUser> RoleManager { get; set; }
+        public RoleManager<IdentityRole> RoleManager { get; set; }
     }
 }

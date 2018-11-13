@@ -11,9 +11,9 @@ namespace Portfolio.Controllers
     {
         private readonly ApplicationDbContext _applicationDbContext;
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly RoleManager<IdentityUser> _roleManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public UserController(ApplicationDbContext applicationDbContext, UserManager<IdentityUser> userManager, RoleManager<IdentityUser> roleManager)
+        public UserController(ApplicationDbContext applicationDbContext, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _applicationDbContext = applicationDbContext;
             _userManager = userManager;
@@ -23,12 +23,12 @@ namespace Portfolio.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult All()
         {
-            UsersAllViewModel usersAllViewModel = new UsersAllViewModel()
-            {
-                Users = _userManager.Users,
-                RoleManager = _roleManager
-            };
-            return View(usersAllViewModel);
+//            UsersAllViewModel usersAllViewModel = new UsersAllViewModel()
+//            {
+//                Users = _userManager.Users,
+//                RoleManager = _roleManager
+//            };
+            return View(_userManager);
         }
     }
 }

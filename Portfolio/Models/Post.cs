@@ -15,9 +15,15 @@ namespace Portfolio.Models
 
         public DateTime DateCreated { get; set; }
 
-        public string Content { get; set; }
+        public string LongText { get; set; }
 
         public string CreatorId { get; set; }
+
+        [DataType(DataType.ImageUrl)]
+        public string ImageUrl { get; set; }
+
+        [MaxLength(300)]
+        public string ShortText { get; set; }
     }
 }
   

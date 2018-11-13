@@ -12,11 +12,18 @@
                 @Html.DisplayFor(modelItem => project.Title)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@project.Id">Edit</a> |
-                <a asp-action="Index" asp-route-id="@project.Id">Display</a> |
-                <a asp-action="Delete" asp-route-id="@project.Id">Delete</a>
+                <div class="float-right">
+                    <a asp-action="Edit" asp-route-id="@project.Id">Edit</a> |
+                    <a asp-action="Index" asp-route-id="@project.Id">Display</a> |
+                    <a asp-action="Delete" asp-route-id="@project.Id">Delete</a>
+                </div>
             </td>
         </tr>
     }
 
+    <tr>
+        <a asp-area="" asp-controller="Project" asp-action="Index" asp-route-id="Create" class="nav-link">
+            <button class="btn btn-primary">Add new project</button>
+        </a>
+    </tr>
 </table>

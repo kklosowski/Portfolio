@@ -36,11 +36,10 @@ body {
     }
 }
 
-.card {
-    width: 18rem;
+.card{
     min-width: 20rem;
-    max-width: 30rem;
-    max-height: 40rem;
+    max-width: 40rem;
+    max-height: 50rem;
     margin: 20px;
 }
 
@@ -51,6 +50,23 @@ body {
     padding: 5px;
 }
 
+
 .navbar {
     margin-bottom: 30px;
+}
+
+hr {
+    padding-bottom: 20px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .card, .card * {
+        max-width: 20rem;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .card, .card * {
+        max-width: 350px;
+    }
 }
