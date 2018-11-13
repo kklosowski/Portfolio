@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Portfolio.Data;
+using Portfolio.Models;
 using Portfolio.ViewModels;
 
 namespace Portfolio.Controllers

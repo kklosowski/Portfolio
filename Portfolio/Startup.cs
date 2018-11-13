@@ -13,6 +13,7 @@ using Portfolio.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Portfolio.Controllers;
+using Portfolio.Models;
 
 namespace Portfolio
 {
