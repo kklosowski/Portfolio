@@ -1,7 +1,12 @@
-﻿@model object
+﻿@model Post
 
 @{
     ViewBag.Title = "title";
 }
+
+@Model.Title
+@Model.Author.UserName
+@Model.DateCreated
+@Model.ShortText
 
 
