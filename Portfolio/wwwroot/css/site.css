@@ -3,6 +3,7 @@ for details on configuring this project to bundle and minify static web assets. 
 body {
     padding-top: 0;
     padding-bottom: 20px;
+    min-width: 400px;
 }
 
 /* Wrapping element */
@@ -59,14 +60,29 @@ hr {
     padding-bottom: 20px;
 }
 
+@media screen and (max-width: 575px) {
+    .card {
+        margin: 20px 0;
+    }
+}
+
+
 @media screen and (min-width: 768px) and (max-width: 991px) {
     .card, .card * {
         max-width: 20rem;
     }
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 992px) and (max-width: 1199px) {
     .card, .card * {
-        max-width: 350px;
+        max-width: 30rem;
     }
+}
+
+.red {
+    color: red;
+}
+
+.row {
+    padding-top: 20px;
 }
