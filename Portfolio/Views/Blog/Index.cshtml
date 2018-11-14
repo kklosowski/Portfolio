@@ -14,7 +14,7 @@
                 <p>@post.ShortText</p>
                 <div>
                     <span class="badge badge-light badge-secondary">Posted @post.DateCreated.ToString(CultureInfo.CurrentCulture)</span>
-                    <span class="label ml-auto float-right">Author: @post.Author</span>
+                    <span class="label ml-auto float-right">Author: @(post.IdentityUser.Email)</span>
                     @* <div class="pull-right"> *@
                     @*     <span class="label label-default">alice</span> <span class="label label-primary">story</span> <span class="label label-success">blog</span> <span class="label label-info">personal</span> <span class="label label-warning">Warning</span> *@
                     @*     <span class="label label-danger">Danger</span> *@

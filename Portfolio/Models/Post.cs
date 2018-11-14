@@ -26,11 +26,15 @@ namespace Portfolio.Models
         [MaxLength(300)]
         public string ShortText { get; set; }
 
-        [ForeignKey("CommentsForeignKey")]
         public List<Comment> Comments { get; set; }
 
-        [ForeignKey("AuthorForeignKey")]
-        public IdentityUser Author { get; set; }
+        public string IdentityUserId { get; set; }
+        public IdentityUser IdentityUser { get; set; }
+
+        public override string ToString()
+        {
+            return $"{nameof(Id)}: {Id}, {nameof(Title)}: {Title}, {nameof(DateCreated)}: {DateCreated}, {nameof(LongText)}: {LongText}, {nameof(ImageUrl)}: {ImageUrl}, {nameof(ShortText)}: {ShortText}, {nameof(Comments)}: {Comments}, {nameof(IdentityUserId)}: {IdentityUserId}, {nameof(IdentityUser)}: {IdentityUser}";
+        }
     }
 }
   

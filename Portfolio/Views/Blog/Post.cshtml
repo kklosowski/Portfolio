@@ -1,24 +1,28 @@
 ﻿@using System.Globalization
-@model Post
+@model Portfolio.ViewModels.PostViewModel
+@* TODO: Create PostViewModel *@
+
 
 @{
     ViewBag.Title = "title";
 }
+<span>@(Model.post.IdentityUser.Email)</span>
+
 <div class="container container-fluid  ">
     <div class="col-md-12 mr-auto">
         <div class="row">
             <div class="col-md">
-                <h1 class="card-title">@Model.Title</h1>
-                <p class="lead">@Model.ShortText</p>
+                <h1 class="card-title">@Model.post.Title</h1>
+                <p class="lead">@Model.post.ShortText</p>
             </div>
             <div class="col-md">
-                <img class="img-fluid" src="@Model.ImageUrl" alt="Project Thumbnail">
+                <img class="img-fluid" src="@Model.post.ImageUrl" alt="Project Thumbnail">
             </div>
         </div>
         <div class="row">
-            <p>@Model.LongText</p>
+            <p>@Model.post.LongText</p>
         </div>
-        <span class="badge badge-dark">@Model.DateCreated.ToString(CultureInfo.InvariantCulture)</span>
+        <span class="badge badge-dark">@Model.post.DateCreated.ToString(CultureInfo.InvariantCulture)</span>
         <hr />
     </div>
 </div>
@@ -27,30 +31,34 @@
 <div class="container-fluid">
     <div class="col-xl-6 col-lg-8 col-md-8 col-sm-12 col-xs-12">
         <br style="clear: both">
-        <div class="form-group">
+        <form asp-action="Comment" asp-route-postId="@Model.post.Id" class="form-group">
+            <script> console.log(@Model.post.Id)</script>
             <label id="messageLabel" for="message">
                 <b>Comment</b>
             </label>
-            <textarea class="form-control input-lg " type="textarea" id="message" placeholder="Message" maxlength="140" rows="4"></textarea>
+            <textarea asp-for="@Model.comment.Text" class="form-control input-lg " type="textarea" id="message" placeholder="Message" maxlength="140" rows="4"></textarea>
             <span class="help-block">
                 <p id="characterLeft" class="help-block ">You have reached the limit</p>
             </span>
-        </div>
-        <br style="clear: both">
-        <div class="form-group col-md-6 ml-auto">
-            <button class="form-control input-sm btn btn-success disabled" id="btnSubmit" name="btnSubmit" type="button" style="height: 35px"> Send</button>
-        </div>
+            <br style="clear: both">
+            <div class="form-group col-md-6 ml-auto">
+                <button class="form-control input-sm btn btn-success disabled" id="btnSubmit" name="btnSubmit" type="submit" style="height: 35px"> Send</button>
+            </div>
+        </form>
         <hr />
     </div>
 
 </div>
-
-<div class="col-xl-6 col-lg-8 col-md-8 col-sm-12 col-xs-12">
-    <img class="mr-3" style="max-width: 40px" src="https://cdn-images-1.medium.com/max/1200/1*MccriYX-ciBniUzRKAUsAw.png" alt="Generic placeholder image">
-    <div class="media-body">
-        <h5 class="mt-0">Media heading</h5>
-        <p>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-        </p>
+@foreach (var comment in Model.post.Comments)
+{
+    <div class="col-xl-6 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+        <img class="mr-3" style="max-width: 40px" src="https://cdn-images-1.medium.com/max/1200/1*MccriYX-ciBniUzRKAUsAw.png" alt="Generic placeholder image">
+        <div class="media-body">
+            <h5 class="mt-0">@comment.IdentityUser.Email</h5>
+            <span>@comment.DateCreated</span>
+            <p>
+                @comment.Text
+            </p>
+        </div>
     </div>
-</div>
+}

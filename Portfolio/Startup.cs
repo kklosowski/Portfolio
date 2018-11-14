@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Portfolio.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Portfolio.Controllers;
 using Portfolio.Models;
 
@@ -52,7 +53,7 @@ namespace Portfolio
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -64,6 +65,12 @@ namespace Portfolio
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
+            //Logger snippet
+//            var logger = _loggerFactory.CreateLogger("MyLogger");
+//            logger.LogDebug("Calling the ping action");
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

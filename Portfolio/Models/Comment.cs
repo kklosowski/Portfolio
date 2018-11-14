@@ -16,10 +16,11 @@ namespace Portfolio.Models
 
         public string Text { get; set; }
 
-        [ForeignKey("UserForeignKey")]
-        public IdentityUser User { get; set; }
+        public string IdentityUserId { get; set;}
 
-        [ForeignKey("PostForeignKey")]
+        public IdentityUser IdentityUser { get; set; }
+
+        public int PostId { get; set; }
         public Post Post { get; set; }
     }
 }

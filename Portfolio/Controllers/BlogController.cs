@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.Logging;
 using Portfolio.Data;
 using Portfolio.Models;
+using Portfolio.ViewModels;
 
 namespace Portfolio.Controllers
 {
@@ -16,16 +16,29 @@ namespace Portfolio.Controllers
     {
         private readonly ApplicationDbContext _applicationDbContext;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly ILoggerFactory _loggerFactory;
 
-        public BlogController(ApplicationDbContext applicationDbContext, UserManager<IdentityUser> userManager)
+        public BlogController(ApplicationDbContext applicationDbContext, UserManager<IdentityUser> userManager, ILoggerFactory loggerFactory)
         {
-            this._applicationDbContext = applicationDbContext;
-            this._userManager = userManager;
+            _applicationDbContext = applicationDbContext;
+            _userManager = userManager;
+            _loggerFactory = loggerFactory;
+
+            //TODO: Try to find a more elegant solution
+            foreach (var post in _applicationDbContext.Posts)
+            {               
+                IdentityUser user = userManager.FindByIdAsync(post.IdentityUserId).Result;
+                post.IdentityUser = user;
+                _applicationDbContext.Posts.Update(post);
+            }
+
+            _applicationDbContext.SaveChanges();
+
         }
 
         public IActionResult Index()
         {
-            List<Post> posts = _applicationDbContext.Posts.ToList();
+            var posts = _applicationDbContext.Posts.ToList();
 
             return View(posts);
         }
@@ -33,17 +46,44 @@ namespace Portfolio.Controllers
         public IActionResult Post(int id)
         {
             var post = _applicationDbContext.Posts.FirstOrDefault(x => x.Id == id);
-            return View(post);
+            post.Comments = _applicationDbContext.Comments.ToList().FindAll(x => x.PostId == id)
+                .OrderByDescending(x => x.DateCreated).ToList();
+
+            return View(new PostViewModel(){post = post, comment = null});
         }
 
-        //GET: Project/Create
+        // POST: Blog/Comment
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Comment(int postId,
+            [Bind("Text")] Comment comment)
+        {
+            var logger = _loggerFactory.CreateLogger("MyLogger");
+            logger.LogDebug("Input post id" + postId);
+
+            if (ModelState.IsValid)
+            {
+                var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                comment.DateCreated = DateTime.Now;
+                comment.IdentityUser = _userManager.Users.First(x => x.Id == userId);
+                comment.Post = _applicationDbContext.Posts.First(p => p.Id == postId);
+
+                _applicationDbContext.Comments.Add(comment);
+                await _applicationDbContext.SaveChangesAsync();
+            }
+
+            return RedirectToAction("Post", "Blog", new {id = postId});
+        }
+
+        //GET: Blog/Write
         [Authorize(Roles = "Admin")]
         public IActionResult Write()
         {
             return View();
         }
 
-        // POST: Project/Create
+        // POST: Blog/Write
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
@@ -57,11 +97,11 @@ namespace Portfolio.Controllers
                 var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
                 post.DateCreated = DateTime.Now;
-                post.Author = await _userManager.FindByIdAsync(userId);
+                post.IdentityUser = _userManager.Users.First(x => x.Id == userId);
 
                 _applicationDbContext.Add(post);
                 await _applicationDbContext.SaveChangesAsync();
-                return RedirectToAction("Post", "Blog", new { id = post.Id });
+                return RedirectToAction("Post", "Blog", new {id = post.Id});
             }
 
             return View();

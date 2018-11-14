@@ -18,7 +18,7 @@ namespace Portfolio
         {
             var host = CreateWebHostBuilder(args).Build();
             SeedDatabase(host);
-            host.Run();
+           host.Run();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>

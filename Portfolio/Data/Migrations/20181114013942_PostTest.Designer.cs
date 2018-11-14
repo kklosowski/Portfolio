@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Portfolio.Data;
 
 namespace Portfolio.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181114013942_PostTest")]
+    partial class PostTest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -186,19 +188,23 @@ namespace Portfolio.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CommentsForeignKey");
+
                     b.Property<DateTime>("DateCreated");
 
-                    b.Property<string>("IdentityUserId");
-
-                    b.Property<int>("PostId");
+                    b.Property<int?>("PostForeignKey");
 
                     b.Property<string>("Text");
 
+                    b.Property<string>("UserForeignKey");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("IdentityUserId");
+                    b.HasIndex("CommentsForeignKey");
 
-                    b.HasIndex("PostId");
+                    b.HasIndex("PostForeignKey");
+
+                    b.HasIndex("UserForeignKey");
 
                     b.ToTable("Comments");
                 });
@@ -209,9 +215,9 @@ namespace Portfolio.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DateCreated");
+                    b.Property<string>("AuthorForeignKey");
 
-                    b.Property<string>("IdentityUserId");
+                    b.Property<DateTime>("DateCreated");
 
                     b.Property<string>("ImageUrl");
 
@@ -225,7 +231,7 @@ namespace Portfolio.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdentityUserId");
+                    b.HasIndex("AuthorForeignKey");
 
                     b.ToTable("Posts");
                 });
@@ -300,21 +306,24 @@ namespace Portfolio.Data.Migrations
 
             modelBuilder.Entity("Portfolio.Models.Comment", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
-                        .WithMany()
-                        .HasForeignKey("IdentityUserId");
+                    b.HasOne("Portfolio.Models.Post")
+                        .WithMany("Comments")
+                        .HasForeignKey("CommentsForeignKey");
 
                     b.HasOne("Portfolio.Models.Post", "Post")
-                        .WithMany("Comments")
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithMany()
+                        .HasForeignKey("PostForeignKey");
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserForeignKey");
                 });
 
             modelBuilder.Entity("Portfolio.Models.Post", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Author")
                         .WithMany()
-                        .HasForeignKey("IdentityUserId");
+                        .HasForeignKey("AuthorForeignKey");
                 });
 #pragma warning restore 612, 618
         }
