@@ -1,27 +1,26 @@
 ﻿@using System.Globalization
 @model List<Post>
 
-<div class="container">
+<div class="how-section1">
     @foreach (var post in Model)
     {
-//        TODO: Fix scaling
-        <div class="col-12 clearfix">
-            <div class="col-md-4 col-lg-4 col-sm-4 col-xs-12 mr-auto float-left">
-                <img class="img-responsive" src="@post.ImageUrl" style="max-width: 300px"/>
+        <div class="row">
+            <div class="col-md-6 how-img">
+                <img src="@post.ImageUrl" class="rounded-circle img-fluid" alt=""/>
             </div>
-            <div class="col-md-7 col-lg-8 col-sm-8 col-xs-12 ml-auto" style="height: 100%">
-                <h1><a asp-action="Post" asp-controller="Blog" asp-route-id="@post.Id">@post.Title</a></h1>
-                <p>@post.ShortText</p>
+            <div class="col-md-6">
+                <h4>
+                    <a asp-action="Post" asp-controller="Blog" asp-route-id="@post.Id">@post.Title</a>
+                </h4>
+                <p class="text-muted">
+                    @post.ShortText
+                </p>
                 <div>
-                    <span class="badge badge-light badge-secondary">Posted @post.DateCreated.ToString(CultureInfo.CurrentCulture)</span>
-                    <span class="label ml-auto float-right">Author: @(post.IdentityUser.Email)</span>
-                    @* <div class="pull-right"> *@
-                    @*     <span class="label label-default">alice</span> <span class="label label-primary">story</span> <span class="label label-success">blog</span> <span class="label label-info">personal</span> <span class="label label-warning">Warning</span> *@
-                    @*     <span class="label label-danger">Danger</span> *@
-                    @* </div> *@
+                    <span class="badge badge-light badge-secondary mr-auto">@post.DateCreated.ToString(CultureInfo.CurrentCulture)</span>
+                    <span class="badge badge-light badge-secondary ml-auto">Author: @(post.IdentityUser.Email)</span>
                 </div>
             </div>
         </div>
-        <hr>
+        <hr/>
     }
 </div>

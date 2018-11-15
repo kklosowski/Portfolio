@@ -44,6 +44,10 @@ body {
     margin: 20px;
 }
 
+.card a{
+    color: #444;
+}
+
 .card-img-top {
     -webkit-box-shadow: 0 4px 6px -6px gray;
     -moz-box-shadow: 0 4px 6px -6px gray;
@@ -57,7 +61,7 @@ body {
 }
 
 hr {
-    padding-bottom: 20px;
+    padding-top: 15px;
 }
 
 @media screen and (max-width: 575px) {
@@ -83,6 +87,14 @@ hr {
     }
 }
 
+.margin-0 {
+    margin: 0;
+}
+
+.padding-0 {
+    padding: 0;
+}
+
 .red {
     color: red;
 }
@@ -90,3 +102,24 @@ hr {
 .row {
     padding-top: 20px;
 }
+
+.pad-bot-1rem {
+    padding-bottom: 1rem;
+}
+
+
+.list-group {
+    margin: auto;
+    float: left;
+    padding-top: 20px;
+}
+
+.list-group-item {
+    font-weight: bold;
+    color: #333
+}
+
+.post-text-row {
+    padding: 20px 15px 5px;
+}
+

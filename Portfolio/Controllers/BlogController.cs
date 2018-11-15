@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Portfolio.Data;
 using Portfolio.Models;
@@ -23,37 +24,30 @@ namespace Portfolio.Controllers
             _applicationDbContext = applicationDbContext;
             _userManager = userManager;
             _loggerFactory = loggerFactory;
-
-            //TODO: Try to find a more elegant solution
-            foreach (var post in _applicationDbContext.Posts)
-            {               
-                IdentityUser user = userManager.FindByIdAsync(post.IdentityUserId).Result;
-                post.IdentityUser = user;
-                _applicationDbContext.Posts.Update(post);
-            }
-
-            _applicationDbContext.SaveChanges();
-
         }
 
         public IActionResult Index()
         {
-            var posts = _applicationDbContext.Posts.ToList();
+            var posts = _applicationDbContext.Posts.Include(x => x.IdentityUser).ToList();
 
             return View(posts);
         }
 
         public IActionResult Post(int id)
         {
-            var post = _applicationDbContext.Posts.FirstOrDefault(x => x.Id == id);
-            post.Comments = _applicationDbContext.Comments.ToList().FindAll(x => x.PostId == id)
-                .OrderByDescending(x => x.DateCreated).ToList();
+            var post = _applicationDbContext.Posts
+                .Where(x => x.Id == id)
+                .Include(x => x.IdentityUser)
+                .Include(x => x.Comments)
+                .ThenInclude(x => x.IdentityUser)
+                .FirstOrDefault();
 
             return View(new PostViewModel(){post = post, comment = null});
         }
 
         // POST: Blog/Comment
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Comment(int postId,
             [Bind("Text")] Comment comment)
@@ -91,7 +85,6 @@ namespace Portfolio.Controllers
             [Bind("Id, Title, ShortText, LongText, ImageUrl")]
             Post post)
         {
-            //TODO: Fix user assignment
             if (ModelState.IsValid)
             {
                 var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -99,8 +92,9 @@ namespace Portfolio.Controllers
                 post.DateCreated = DateTime.Now;
                 post.IdentityUser = _userManager.Users.First(x => x.Id == userId);
 
-                _applicationDbContext.Add(post);
+                _applicationDbContext.Posts.Add(post);
                 await _applicationDbContext.SaveChangesAsync();
+
                 return RedirectToAction("Post", "Blog", new {id = post.Id});
             }
 

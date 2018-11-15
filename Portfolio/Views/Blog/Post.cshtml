@@ -1,64 +1,69 @@
 ﻿@using System.Globalization
 @model Portfolio.ViewModels.PostViewModel
-@* TODO: Create PostViewModel *@
-
 
 @{
     ViewBag.Title = "title";
 }
-<span>@(Model.post.IdentityUser.Email)</span>
 
 <div class="container container-fluid  ">
-    <div class="col-md-12 mr-auto">
-        <div class="row">
-            <div class="col-md">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-11 col-xl-11 mx-auto">
+        <div class="row pad-bot-1rem" >
+            <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-xs-12">
                 <h1 class="card-title">@Model.post.Title</h1>
                 <p class="lead">@Model.post.ShortText</p>
             </div>
-            <div class="col-md">
-                <img class="img-fluid" src="@Model.post.ImageUrl" alt="Project Thumbnail">
+            <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-xs-12">
+                <img class="img-fluid rounded" src="@Model.post.ImageUrl" alt="Project Thumbnail">
             </div>
         </div>
-        <div class="row">
+        <div class="row post-text-row">
             <p>@Model.post.LongText</p>
         </div>
-        <span class="badge badge-dark">@Model.post.DateCreated.ToString(CultureInfo.InvariantCulture)</span>
+        <span class="badge badge-secondary">@Model.post.DateCreated.ToString(CultureInfo.InvariantCulture)</span>
         <hr />
     </div>
 </div>
 
 
 <div class="container-fluid">
-    <div class="col-xl-6 col-lg-8 col-md-8 col-sm-12 col-xs-12">
-        <br style="clear: both">
-        <form asp-action="Comment" asp-route-postId="@Model.post.Id" class="form-group">
-            <script> console.log(@Model.post.Id)</script>
-            <label id="messageLabel" for="message">
-                <b>Comment</b>
-            </label>
-            <textarea asp-for="@Model.comment.Text" class="form-control input-lg " type="textarea" id="message" placeholder="Message" maxlength="140" rows="4"></textarea>
-            <span class="help-block">
-                <p id="characterLeft" class="help-block ">You have reached the limit</p>
-            </span>
-            <br style="clear: both">
-            <div class="form-group col-md-6 ml-auto">
-                <button class="form-control input-sm btn btn-success disabled" id="btnSubmit" name="btnSubmit" type="submit" style="height: 35px"> Send</button>
-            </div>
-        </form>
-        <hr />
-    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-11 col-xl-11 mx-auto padding-0">
 
-</div>
-@foreach (var comment in Model.post.Comments)
-{
-    <div class="col-xl-6 col-lg-8 col-md-8 col-sm-12 col-xs-12">
-        <img class="mr-3" style="max-width: 40px" src="https://cdn-images-1.medium.com/max/1200/1*MccriYX-ciBniUzRKAUsAw.png" alt="Generic placeholder image">
-        <div class="media-body">
-            <h5 class="mt-0">@comment.IdentityUser.Email</h5>
-            <span>@comment.DateCreated</span>
-            <p>
-                @comment.Text
-            </p>
+        <div class="col-xl-7 col-lg-8 col-md-12 col-sm-12 col-xs-12">
+            <br style="clear: both">
+            <form asp-action="Comment" asp-route-postId="@Model.post.Id" class="form-group">
+                <script> console.log(@Model.post.Id)</script>
+                <label id="messageLabel" for="message">
+                    <b>Comment</b>
+                </label>
+                <textarea asp-for="@Model.comment.Text" class="form-control input-lg " type="textarea" id="message" placeholder="Message" maxlength="140" rows="4"></textarea>
+                <span class="help-block">
+                    <p id="characterLeft" class="help-block margin-0">You have reached the limit</p>
+                </span>
+                <br style="clear: both">
+                <div class="form-group col-md-6 ml-auto padding-0">
+                    <button class="form-control input-sm btn btn-dark disabled" id="btnSubmit" name="btnSubmit" type="submit" style="height: 35px"> Send</button>
+                </div>
+            </form>
+            <hr/>
         </div>
+        
+        @foreach (var comment in Model.post.Comments.OrderByDescending(x => x.DateCreated))
+        {
+            <div class="col-xl-7 col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                <div class="row pad-bot-1rem">
+                    <div class="col-3">
+                        <img class="mr-3" style="max-width: 80px" src="https://cdn-images-1.medium.com/max/1200/1*MccriYX-ciBniUzRKAUsAw.png" alt="Generic placeholder image">
+                    </div>
+                    <div class="media-body col-9">
+                        <h5 class="mt-0">@comment.IdentityUser.Email</h5>
+                        <span>@comment.DateCreated</span>
+                        <p>
+                            @comment.Text
+                        </p>
+                    </div>
+                </div>                
+            </div>
+        }
     </div>
-}
+</div>
+

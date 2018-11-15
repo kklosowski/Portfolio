@@ -2,10 +2,10 @@
 
 
 <div class="jumbotron">
-    <h1 class="display-4">Hello, world!</h1>
-    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <h1 class="display-4">Kamil Klosowski</h1>
+    <p class="lead">Student, Web developer, aspiring Data Scientist.</p>
     <hr class="my-4">
-    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+    <p></p>
     <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
 </div>
 
@@ -15,7 +15,7 @@
         <div class="card">
             <img class="card-img-top img-thumbnail" src="@project.ImageUrl" alt="Project Thumbnail">
             <div class="card-body">
-                <a asp-controller="Project" asp-action="Index" asp-route-id="@project.Id"><h5 class="card-title">@project.Title</h5></a>
+                <h4 class="card-title"><a asp-controller="Project" asp-action="Index" asp-route-id="@project.Id">@project.Title</a></h4>
                 <p class="card-text">@project.ShortDescription</p>
             </div>
             <div class="card-footer">
