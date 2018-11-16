@@ -1,7 +1,7 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
 for details on configuring this project to bundle and minify static web assets. */
 body {
-    min-width: 400px;
+    min-width: 350px;
     padding-bottom: 20px;
     padding-top: 0;
 }
@@ -94,24 +94,12 @@ hr {
     }
 }
 
-.margin-0 {
-    margin: 0;
-}
-
-.padding-0 {
-    padding: 0;
-}
-
 .red {
     color: red;
 }
 
 .row {
     padding-top: 20px;
-}
-
-.pad-bot-1rem {
-    padding-bottom: 1rem;
 }
 
 
@@ -154,12 +142,6 @@ hr {
     position: relative;
 }
 
-.date-author-footer {
-    bottom: 10px;
-    left: 15px;
-    position: absolute;
-}
-
 .how-section1 {
     margin-top: -4rem;
     padding: 10%;
@@ -178,9 +160,6 @@ hr {
     .how-section1 .subheading {
         color: #3931af;
         font-size: 20px;
-    }
-
-    .how-section1 .row { /* margin-top: 10%; */
     }
 
     .how-section1 hr {
@@ -204,60 +183,3 @@ hr {
 .parent {
     width: 240px;
 }
-
-.img {
-    display: block;
-    height: auto;
-    width: 100%;
-}
-
-.post {
-    min-height: 15rem;
-    padding: 15px;
-}
-
-.post-content {
-    position: relative;
-}
-
-.date-author-footer {
-    bottom: 10px;
-    left: 15px;
-    position: absolute;
-}
-
-.how-section1 {
-    margin-top: -4rem;
-    padding: 10%;
-}
-
-    .how-section1 a {
-        color: #555555
-    }
-
-    .how-section1 h4 {
-        color: #555;
-        font-size: 30px;
-        font-weight: bold;
-    }
-
-    .how-section1 .subheading {
-        color: #3931af;
-        font-size: 20px;
-    }
-
-    .how-section1 .row { /* margin-top: 10%; */
-    }
-
-    .how-section1 hr {
-        margin: 3rem 0;
-    }
-
-.how-img {
-    padding-bottom: 15px;
-    text-align: center;
-}
-
-    .how-img img {
-        width: 80%;
-    }

@@ -1,5 +1,5 @@
-﻿@model Microsoft.AspNetCore.Identity.UserManager<Microsoft.AspNetCore.Identity.IdentityUser>
-
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
 <table class="table">
     <tr>
         <th>Email</th>
@@ -7,13 +7,13 @@
         <th>Roles</th>
     </tr>
 
-    @foreach (var user in Model.Users.ToList())
+    @foreach (var user in UserManager.Users.ToList())
     {
         <tr>
             <td>@user.Email</td>
             <td>@user.UserName</td>
             <td>
-                @foreach (var role in Model.GetRolesAsync(user).Result)
+                @foreach (var role in UserManager.GetRolesAsync(user).Result)
                 {
                     @role
                 }

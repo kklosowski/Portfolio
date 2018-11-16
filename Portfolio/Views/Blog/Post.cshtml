@@ -7,7 +7,7 @@
 
 <div class="container container-fluid  ">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-11 col-xl-11 mx-auto">
-        <div class="row pad-bot-1rem" >
+        <div class="row pb-3" >
             <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-xs-12">
                 <h1 class="card-title">@Model.post.Title</h1>
                 <p class="lead">@Model.post.ShortText</p>
@@ -26,7 +26,7 @@
 
 
 <div class="container-fluid">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-11 col-xl-11 mx-auto padding-0">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-11 col-xl-11 mx-auto p-0">
 
         <div class="col-xl-7 col-lg-8 col-md-12 col-sm-12 col-xs-12">
             <br style="clear: both">
@@ -37,10 +37,10 @@
                 </label>
                 <textarea asp-for="@Model.comment.Text" class="form-control input-lg " type="textarea" id="message" placeholder="Message" maxlength="140" rows="4"></textarea>
                 <span class="help-block">
-                    <p id="characterLeft" class="help-block margin-0">You have reached the limit</p>
+                    <p id="characterLeft" class="help-block m-0">You have reached the limit</p>
                 </span>
                 <br style="clear: both">
-                <div class="form-group col-md-6 ml-auto padding-0">
+                <div class="form-group col-md-6 ml-auto p-0">
                     <button class="form-control input-sm btn btn-dark disabled" id="btnSubmit" name="btnSubmit" type="submit" style="height: 35px"> Send</button>
                 </div>
             </form>
@@ -50,7 +50,7 @@
         @foreach (var comment in Model.post.Comments.OrderByDescending(x => x.DateCreated))
         {
             <div class="col-xl-7 col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                <div class="row pad-bot-1rem">
+                <div class="row pb-3">
                     <div class="col-3">
                         <img class="mr-3" style="max-width: 80px" src="https://cdn-images-1.medium.com/max/1200/1*MccriYX-ciBniUzRKAUsAw.png" alt="Generic placeholder image">
                     </div>
