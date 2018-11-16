@@ -113,7 +113,7 @@ hr { padding-top: 15px; }
 .post-content { position: relative; }
 
 .how-section1 {
-    margin-top: -4rem;
+    margin-top: -3rem;
     padding: 10%;
 }
 
@@ -145,3 +145,22 @@ hr { padding-top: 15px; }
 }
 
 .parent { width: 240px; }
+
+.main-jumbotron {
+    background-image: url(https://wallpapersite.com/images/wallpapers/blur-background-2880x1800-spectrum-electromagnetic-4k-901.jpg);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
+}
+
+.jumbotron {
+    background: rgba(204, 204, 204, 0.2);
+}
+
+@media (min-width: 350px) {
+    .full-width {
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+    }
+}

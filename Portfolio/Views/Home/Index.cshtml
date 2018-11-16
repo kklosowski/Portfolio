@@ -1,12 +1,18 @@
-﻿@model Portfolio.Models.HomeViewModel
+﻿@model HomeViewModel
 
 
-<div class="jumbotron">
-    <h1 class="display-4">Kamil Klosowski</h1>
-    <p class="lead">Student, Web developer, aspiring Data Scientist.</p>
-    <hr class="my-4">
-    <p></p>
-    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+<div class="full-width main-jumbotron">
+    <div class="jumbotron">
+        <div class="container text-light text-center py-5">
+            <h1 class="display-3">
+                <strong>Kamil Klosowski</strong>
+            </h1>
+            <p class="lead">Student, Web developer, aspiring Data Scientist.</p>
+            <hr class="my-4">
+            <p></p>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        </div>
+    </div>
 </div>
 
 <div class="card-deck">
@@ -15,7 +21,9 @@
         <div class="card">
             <img class="card-img-top img-thumbnail" src="@project.ImageUrl" alt="Project Thumbnail">
             <div class="card-body">
-                <h4 class="card-title"><a asp-controller="Project" asp-action="Index" asp-route-id="@project.Id">@project.Title</a></h4>
+                <h4 class="card-title">
+                    <a asp-controller="Project" asp-action="Index" asp-route-id="@project.Id">@project.Title</a>
+                </h4>
                 <p class="card-text">@project.ShortDescription</p>
             </div>
             <div class="card-footer">
