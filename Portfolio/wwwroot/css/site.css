@@ -1,47 +1,12 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
-for details on configuring this project to bundle and minify static web assets. */
-body {
-    min-width: 350px;
+﻿body {
+    min-width: 260px;
     padding-bottom: 20px;
     padding-top: 0;
 }
 
-/* Wrapping element */
-
-/* Set some basic padding to keep content from hitting the edges */
-
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-/* Carousel */
-
-.carousel-caption p {
-    font-size: 20px;
-    line-height: 1.4;
-}
-
-/* Make .svg files in the carousel display properly in older browsers */
-
-.carousel-inner .item img[src$=".svg"] { width: 100%; }
-
-/* QR code generator */
-
-#qrCode { margin: 15px; }
-
-/* Hide/rearrange for smaller screens */
-
-@media screen and (max-width: 767px) {
-    /* Hide captions */
-    .carousel-caption { display: none; }
-}
-
-.card {
-    margin: 20px;
-    max-height: 50rem;
-    max-width: 40rem;
-    min-width: 20rem;
+    /* padding-left: 15px; */
+    /* padding-right: 15px; */
 }
 
 .card a { color: #444; }
@@ -58,8 +23,42 @@ body {
 
 hr { padding-top: 15px; }
 
+.display-5 {
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+@media screen and (max-width: 299px) {
+    .jumbotron { padding-top: 10vh; }
+
+    .full-width { min-height: 45vh; }
+}
+
+@media screen and (min-width: 300px) and (max-width: 767px) {
+    .jumbotron { padding-top: 17vh; }
+
+    .full-width { min-height: 54vh; }
+}
+
+@media screen and (min-width: 768px) {
+    .jumbotron { padding-top: 25vh; }
+
+    .full-width { min-height: 70vh; }
+}
+
+.card {
+    margin: 20px;
+    max-height: 50rem;
+    max-width: 40rem;
+    min-width: 20rem;
+}
+
 @media screen and (max-width: 575px) {
-    .card { margin: 20px 0; }
+    .card {
+        margin: 20px 0;
+        min-width: 10rem;
+    }
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
@@ -113,7 +112,7 @@ hr { padding-top: 15px; }
 .post-content { position: relative; }
 
 .how-section1 {
-    margin-top: -3rem;
+    margin-top: 4em;
     padding: 10%;
 }
 
@@ -147,20 +146,93 @@ hr { padding-top: 15px; }
 .parent { width: 240px; }
 
 .main-jumbotron {
-    background-image: url(https://wallpapersite.com/images/wallpapers/blur-background-2880x1800-spectrum-electromagnetic-4k-901.jpg);
-    background-repeat: no-repeat;
     background-attachment: scroll;
+    background-image: url('../images/lead-background.jpg');
     background-position: center center;
+    background-repeat: no-repeat;
     background-size: cover;
 }
 
-.jumbotron {
-    background: rgba(204, 204, 204, 0.2);
+.jumbotron { background-color: transparent; }
+
+.lead-shadow-gradient { background: radial-gradient(closest-side, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0)); }
+
+.lead-back-shadow-gradient { background: radial-gradient(closest-side, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.1)); }
+
+
+.full-width {
+    margin-left: calc(50% - 50vw + 0.501rem);
+    margin-right: calc(50% - 50vw + 0.501rem);
+    margin-top: -56px;
 }
 
-@media (min-width: 350px) {
-    .full-width {
-        margin-left: calc(50% - 50vw);
-        margin-right: calc(50% - 50vw);
-    }
+
+/* TEST */
+
+#mainNav {
+    -moz-transition: padding-top 0.5s, padding-bottom 0.5s, background-color 0.5s;
+    -webkit-transition: padding-top 0.5s, padding-bottom 0.5s, background-color 0.5s;
+    background: linear-gradient(to top, rgba(255, 0, 0, 0), rgba(0, 0, 0, 0.5));
+    border: none;
+    font-weight: 500;
+    padding-bottom: 1.3rem;
+    transition: padding-top 0.5s, padding-bottom 0.5s, background-color 0.5s;
+    z-index: 9;
+}
+
+#mainNav .navbar-brand {
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    color: white;
+    font-size: 1.75em;
+    transition: all 0.5s;
+}
+
+#mainNav .navbar-nav .nav-item .nav-link {
+    color: white;
+    padding: 1.1em 1em !important;
+}
+
+#mainNav.navbar-shrink {
+    /* background-color: rgba(0, 0, 0, 0.2);  */
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+#mainNav.navbar-shrink * { color: blue; }
+
+#mainNav.navbar-shrink .navbar-brand {
+    color: azure;
+    font-size: 1.25em;
+    padding: 12px 0;
+}
+
+#mainNav .transition-helper {
+    -moz-transition: opacity 0.5s linear;
+    -o-transition: opacity 0.5s linear;
+    -webkit-transition: opacity 0.5s linear;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9));
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.5s linear;
+    width: 100%;
+    z-index: -1;
+}
+
+#mainNav.navbar-shrink .transition-helper { opacity: 1; }
+
+.nav-open {
+    padding-bottom: 50px !important;
+}
+
+#mainNav.nav-open .transition-helper {
+    background: -moz-linear-gradient(top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.8) 80%, rgba(0,0,0,0.55) 90%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.8) 80%,rgba(0,0,0,0.55) 90%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.8) 80%,rgba(0,0,0,0.55) 90%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+    opacity: 1;
+
 }

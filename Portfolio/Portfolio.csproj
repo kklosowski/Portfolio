@@ -3,11 +3,6 @@
   <PropertyGroup>
     <UserSecretsId>aspnet-Portfolio-4946BBF6-2F32-4C2E-815C-B5DC6803DA2A</UserSecretsId>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <PreserveCompilationContext>true</PreserveCompilationContext>
-    <MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>
-    <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
-    <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
-
   </PropertyGroup>
 
   <ItemGroup>

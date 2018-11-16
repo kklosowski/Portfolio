@@ -143,7 +143,7 @@ hr {
 }
 
 .how-section1 {
-    margin-top: -4rem;
+    margin-top: -3rem;
     padding: 10%;
 }
 
@@ -183,3 +183,90 @@ hr {
 .parent {
     width: 240px;
 }
+
+.main-jumbotron {
+    background-attachment: scroll;
+    background-image: url(https://wallpapersite.com/images/wallpapers/blur-background-2880x1800-spectrum-electromagnetic-4k-901.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.jumbotron {
+    background-color: transparent;
+}
+
+.lead-shadow-gradient {
+    background: radial-gradient(closest-side, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0));
+}
+
+@media (min-width: 350px) {
+    .full-width {
+        margin-left: calc(50% - 50vw + 0.5001em);
+        margin-right: calc(50% - 50vw + 0.5001em);
+        margin-top: -56px;
+        padding-top: 20rem;
+        padding-bottom: 12rem;
+    }
+}
+
+
+/* TEST */
+
+#mainNav {
+    -moz-transition: padding-top 0.5s, padding-bottom 0.5s, background-color 0.5s;
+    -webkit-transition: padding-top 0.5s, padding-bottom 0.5s, background-color 0.5s;
+    background: linear-gradient(to top, rgba(255, 0, 0, 0), rgba(0, 0, 0, 0.25));
+    border: none;
+    padding-bottom: 1.3rem;
+    transition: padding-top 0.5s, padding-bottom 0.5s, background-color 0.5s;
+    z-index: 9;
+}
+
+    #mainNav .navbar-brand {
+        -moz-transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+        color: white;
+        font-size: 1.75em;
+        transition: all 0.5s;
+    }
+
+    #mainNav .navbar-nav .nav-item .nav-link {
+        color: white;
+        padding: 1.1em 1em !important;
+    }
+
+    #mainNav.navbar-shrink {
+        /* background-color: rgba(0, 0, 0, 0.2);  */
+        padding-bottom: 0;
+        padding-top: 0;
+    }
+
+        #mainNav.navbar-shrink * {
+            color: blue;
+        }
+
+        #mainNav.navbar-shrink .navbar-brand {
+            color: azure;
+            font-size: 1.25em;
+            padding: 12px 0;
+        }
+
+    #mainNav .transition-helper {
+        -moz-transition: opacity 0.5s linear;
+        -o-transition: opacity 0.5s linear;
+        -webkit-transition: opacity 0.5s linear;
+        background: linear-gradient(to top, rgba(255, 0, 0, 0), rgba(0, 0, 0, 0.9));
+        height: 100%;
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        transition: opacity 0.5s linear;
+        width: 100%;
+        z-index: -1;
+    }
+
+    #mainNav.navbar-shrink .transition-helper {
+        opacity: 1;
+    }
