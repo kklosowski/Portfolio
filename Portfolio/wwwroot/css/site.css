@@ -1,27 +1,18 @@
 ﻿body {
-    /* min-width: 240px; */
-    /* padding-bottom: 20px; */
     padding-top: 0;
-    /* background: rgb(53, 0, 89); */
-    /* background: rgb(41, 17, 41); */
-    /* background: #abbed6; */
-    background: rgb(41,17,41); /* Old browsers */
-    /* background: -moz-linear-gradient(left, rgba(41,17,41,1) 0%, rgba(255,255,255,1) 20%, rgba(255,255,255,1) 80%, rgba(41,17,41,1) 100%); /* FF3.6-15 !1! */
-    /* background: -webkit-linear-gradient(left, rgba(41,17,41,1) 0%,rgba(255,255,255,1) 20%,rgba(255,255,255,1) 80%,rgba(41,17,41,1) 100%); /* Chrome10-25,Safari5.1-6 !1! */
-    /* background: linear-gradient(to right, rgba(41,17,41,1) 0%,rgba(255,255,255,1) 20%,rgba(255,255,255,1) 80%,rgba(41,17,41,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ !1! */
-    /* filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#291129', endColorstr='#291129',GradientType=1 ); /* IE6-9 !1! */
+    background: rgb(41, 17, 41);
 }
 
 .body-shadow {
-    -webkit-box-shadow: 0px 0px 60px 60px rgba(255,255,255,1);
-    -moz-box-shadow: 0px 0px 60px 60px rgba(255,255,255,1);
-    box-shadow: 0px 0px 60px 60px rgba(255,255,255,1);
+    /* -webkit-box-shadow: 0px 0px 60px 60px rgba(255,255,255,1); */
+    /* -moz-box-shadow: 0px 0px 60px 60px rgba(255,255,255,1); */
+    box-shadow: 0px 0px 30px 3px rgba(246,246,246,0.5);
 }
 
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-    background: white;
+    background: #f6f6f6;
 }
 
 .card a { color: #444; }
@@ -63,7 +54,6 @@ hr { padding-top: 15px; }
 }
 
 .card {
-    margin: 20px;
     max-height: 50rem;
     max-width: 40rem;
     min-width: 20rem;
@@ -77,20 +67,22 @@ hr { padding-top: 15px; }
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
-    .card, .card * { max-width: 20rem; }
+    .card, .card * { 
+        max-width: 25rem;     
+    }
 }
 
 @media screen and (min-width: 992px) and (max-width: 1199px) {
-    .card, .card * { max-width: 28rem; }
+    .card, .card * { max-width: 30rem; }
 }
 
 @media screen and (min-width: 1200px) {
-    .card, .card * { max-width: 21rem; }
+    .card, .card * { max-width: 30rem; }
 }
 
 .red { color: red; }
 
-.row { padding-top: 20px; }
+/* .row { padding-top: 20px; } */
 
 
 .list-group {
@@ -127,7 +119,7 @@ hr { padding-top: 15px; }
 .post-content { position: relative; }
 
 .how-section1 {
-    margin-top: 4em;
+    margin-top: 5em;
     padding: 10%;
 }
 

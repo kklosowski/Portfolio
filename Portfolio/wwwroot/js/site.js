@@ -16,6 +16,12 @@
         }
     });
 
+    $("#ctaButton").on("click", function () {
+        $('html, body').animate({
+            scrollTop: $("#mainContent").offset().top - 90
+        }, 1500);
+    })
+
     var resizeLead = function() {
         var display = $(".jumbotron>.container>h1");
         if ($(window).width() > 400) {
@@ -34,16 +40,12 @@
         }
     };
 
+
     resizeLead();
     //Lead Display size based class swap
     $(window).on("resize",
         function() {
             resizeLead();
-            if (!($("button.navbar-toggler").hasClass("collapsed"))) {
-                $("button.navbar-toggler").addClass("collapsed");
-                $("#navbarNav").removeClass("show");
-                $("#mainNav").removeClass("nav-open");
-            }
         });
 
     $("button.navbar-toggler").addClass("collapsed");
