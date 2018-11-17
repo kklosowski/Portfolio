@@ -1,98 +1,91 @@
-﻿(function ($) {
+﻿(function($) {
     //Comment text max length alert
-    $('#characterLeft').text('140 characters left');
-    $('#message').keyup(function () {
+    $("#characterLeft").text("140 characters left");
+    $("#message").keyup(function() {
         var max = 140;
         var len = $(this).val().length;
         if (len >= max) {
-            $('#characterLeft').text('You have reached the limit');
-            $('#characterLeft').addClass('red');
-            $('#btnSubmit').addClass('disabled');
-        }
-        else {
+            $("#characterLeft").text("You have reached the limit");
+            $("#characterLeft").addClass("red");
+            $("#btnSubmit").addClass("disabled");
+        } else {
             var ch = max - len;
-            $('#characterLeft').text(ch + ' characters left');
-            $('#btnSubmit').removeClass('disabled');
-            $('#characterLeft').removeClass('red');
+            $("#characterLeft").text(ch + " characters left");
+            $("#btnSubmit").removeClass("disabled");
+            $("#characterLeft").removeClass("red");
         }
     });
 
-    var resizeLead = function () {
-        var display = $('.jumbotron>.container>h1');
+    var resizeLead = function() {
+        var display = $(".jumbotron>.container>h1");
         if ($(window).width() > 400) {
-            display.addClass('display-3');
-            display.removeClass('display-4');
-            display.removeClass('display-5');
+            display.addClass("display-3");
+            display.removeClass("display-4");
+            display.removeClass("display-5");
 
         } else if ($(window).width() > 300) {
-            display.addClass('display-4');
-            display.removeClass('display-3');
-            display.removeClass('display-5');
-        }
-        else {
-            display.addClass('display-5');
-            display.removeClass('display-3');
-            display.removeClass('display-4');
+            display.addClass("display-4");
+            display.removeClass("display-3");
+            display.removeClass("display-5");
+        } else {
+            display.addClass("display-5");
+            display.removeClass("display-3");
+            display.removeClass("display-4");
         }
     };
 
     resizeLead();
     //Lead Display size based class swap
-    $(window).on('resize', function () {
-        resizeLead();
-    })
+    $(window).on("resize",
+        function() {
+            resizeLead();
+            if (!($("button.navbar-toggler").hasClass("collapsed"))) {
+                $("button.navbar-toggler").addClass("collapsed");
+                $("#navbarNav").removeClass("show");
+                $("#mainNav").removeClass("nav-open");
+            }
+        });
 
-    $("button.navbar-toggler").addClass("collapsed")
+    $("button.navbar-toggler").addClass("collapsed");
     //Color transition on navbar collapse
-    $("button.navbar-toggler").on('click', function () {
+    $("button.navbar-toggler").on("click",
+        function() {
+            console.log($(this).attr("class").split(" "));
+            $("#mainNav").toggleClass("nav-open");
+        });
 
-        console.log($(this).attr("class").split(' '));
-        $("#mainNav").toggleClass("nav-open")
-
-//        if ($(this).hasClass("collapsed")) {
-//
-//            $("#mainNav").animate({
-//                opacity: 0.1,
-//                background: "red"
-//            }, 1000, null)
-//
-//        } else {
-//            $("#mainNav").animate({
-//                opacity: 1,
-//                background: "blue"
-//            }, 1000, null)
-//        }
-    })
-    
 
     "use strict"; // Start of use strict
     // Smooth scrolling using jQuery easing
-    $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
-        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+    $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
+        if (location.pathname.replace(/^\//, "") == this.pathname.replace(/^\//, "") &&
+            location.hostname == this.hostname) {
             var target = $(this.hash);
-            target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+            target = target.length ? target : $("[name=" + this.hash.slice(1) + "]");
             if (target.length) {
-                $('html, body').animate({
-                    scrollTop: (target.offset().top - 54)
-                }, 1000, "easeInOutExpo");
+                $("html, body").animate({
+                        scrollTop: (target.offset().top - 54)
+                    },
+                    1000,
+                    "easeInOutExpo");
                 return false;
             }
         }
     });
 
     // Closes responsive menu when a scroll trigger link is clicked
-    $('.js-scroll-trigger').click(function () {
-        $('.navbar-collapse').collapse('hide');
+    $(".js-scroll-trigger").click(function() {
+        $(".navbar-collapse").collapse("hide");
     });
 
     // Activate scrollspy to add active class to navbar items on scroll
-    $('body').scrollspy({
-        target: '#mainNav',
+    $("body").scrollspy({
+        target: "#mainNav",
         offset: 30
     });
 
     // Collapse Navbar
-    var navbarCollapse = function () {
+    var navbarCollapse = function() {
         if ($("#mainNav").offset().top > 50) {
             $("#mainNav").addClass("navbar-shrink");
         } else {
@@ -105,11 +98,13 @@
     $(window).scroll(navbarCollapse);
 
     // Hide navbar when modals trigger
-    $('.portfolio-modal').on('show.bs.modal', function (e) {
-        $(".navbar").addClass("d-none");
-    })
-    $('.portfolio-modal').on('hidden.bs.modal', function (e) {
-        $(".navbar").removeClass("d-none");
-    })
+    $(".portfolio-modal").on("show.bs.modal",
+        function(e) {
+            $(".navbar").addClass("d-none");
+        });
+    $(".portfolio-modal").on("hidden.bs.modal",
+        function(e) {
+            $(".navbar").removeClass("d-none");
+        });
 
 })(jQuery); // End of use strict

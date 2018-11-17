@@ -1,5 +1,8 @@
 ﻿@model HomeViewModel
 
+@{
+    Layout = "_LayoutIndex";
+}
 
 <div class="full-width main-jumbotron">
     <div class="w-100 h-100 p-0 m-0 lead-back-shadow-gradient full-width">
@@ -17,22 +20,30 @@
     </div>
 </div>
 
-<div class="card-deck">
-    @foreach (var project in Model.Projects)
-    {
-        <div class="card">
-            <img class="card-img-top img-thumbnail" src="@project.ImageUrl" alt="Project Thumbnail">
-            <div class="card-body">
-                <h4 class="card-title">
-                    <a asp-controller="Project" asp-action="Index" asp-route-id="@project.Id">@project.Title</a>
-                </h4>
-                <p class="card-text">@project.ShortDescription</p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">
-                    <a href="@project.GithubUrl">Github Link</a>
-                </small>
-            </div>
-        </div>
-    }
+
+<div class="pb-5">
+    <div class="container body-content rounded mt-5 body-shadow">
+        <div class="card-deck">
+            @foreach (var project in Model.Projects)
+            {
+                <div class="card">
+                    <img class="card-img-top img-thumbnail" src="@project.ImageUrl" alt="Project Thumbnail">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a asp-controller="Project" asp-action="Index" asp-route-id="@project.Id">@project.Title</a>
+                        </h4>
+                        <p class="card-text">@project.ShortDescription</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">
+                            <a href="@project.GithubUrl">Github Link</a>
+                        </small>
+                    </div>
+                </div>
+            }
+        </div> <hr />
+        <footer class="pb-2">
+            <p>&copy; 2018 - kklosowski.com</p>
+        </footer>
+    </div>
 </div>

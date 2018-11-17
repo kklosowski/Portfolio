@@ -16,4 +16,10 @@
     <Folder Include="Pages\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Home\_LayoutIndex.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
 </Project>
