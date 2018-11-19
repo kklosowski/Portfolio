@@ -35,13 +35,14 @@ namespace Portfolio.Controllers
 
         public IActionResult Post(int id)
         {
+            var isAdmin = User.IsInRole("Admin");
             var post = _applicationDbContext.Posts
-                .Where(x => x.Id == id)
+                .Where(x => x.Id == id && (x.Published || isAdmin))
                 .Include(x => x.IdentityUser)
                 .Include(x => x.Comments)
                 .ThenInclude(x => x.IdentityUser)
                 .FirstOrDefault();
-
+            
             return View(new PostViewModel(){post = post, comment = null});
         }
 
@@ -100,5 +101,7 @@ namespace Portfolio.Controllers
 
             return View();
         }
+
+        //TODO: Implement edit and delete
     }
 }

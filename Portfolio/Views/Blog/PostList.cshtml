@@ -23,12 +23,12 @@
                 @post.IdentityUser.UserName
             </td>
             <td class="text-center">
-                <input type="checkbox" value="@post.Published" disabled="true"/>
+                <input type="checkbox" @(post.Published?"checked":"") disabled="true"/>
             </td>
             <td scope="col">
                 <div class="btn-group btn-group-sm" role="group">
                     <a class="btn btn-secondary" asp-action="PostEdit" asp-route-id="@post.Id">Edit</a>
-                    <a class="btn btn-secondary" asp-action="Post" asp-route-id="@post.Id">Display</a>
+                    <a class="btn btn-secondary" asp-controller="Blog" asp-action="Post" asp-route-id="@post.Id">Display</a>
                     <a class="btn btn-secondary" asp-action="PostDelete" asp-route-id="@post.Id">Delete</a>
                 </div>
             </td>

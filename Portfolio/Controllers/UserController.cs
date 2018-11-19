@@ -27,7 +27,6 @@ namespace Portfolio.Controllers
             return View();
         }
 
-        [HttpPost]
         public IActionResult Block(string id)
         {
             var user = _userManager.Users.FirstOrDefault(x => x.Id == id);
@@ -37,6 +36,13 @@ namespace Portfolio.Controllers
             return RedirectToAction("Users", "Admin");
         }
 
-        
+
+        public IActionResult Remove(string id)
+        {
+            var user = _userManager.Users.FirstOrDefault(x => x.Id == id);        
+            _userManager.DeleteAsync(user);
+
+            return RedirectToAction("Users", "Admin");
+        }
     }
 }

@@ -4,31 +4,34 @@
 <div class="how-section1">
     @foreach (var post in Model)
     {
-        <div class="row">
-            <div class="col-xl-6 col-lg-6 col-md-5 col-sm-12 col-xs-12 how-img">
-                <img src="@post.ImageUrl" class="rounded-circle img-fluid" alt=""/>
-            </div>
-            <div class="col-xl-6 col-lg-6 col-md-7 col-sm-12 col-xs-12">
-                <h4>
-                    <a asp-action="Post" asp-controller="Blog" asp-route-id="@post.Id">@post.Title</a>
-                </h4>
-                <p class="text-muted">
-                    @post.ShortText
-                </p>
-                <div class="row">
-                    <div class="col">
-                        <span class="badge badge-light badge-secondary mr-auto">
-                            @post.DateCreated.ToString(CultureInfo.CurrentCulture)
-                        </span>
-                    </div>
-                    <div class="col">
-                        <span class="badge badge-light badge-secondary ml-auto">
-                            Author: @(post.IdentityUser.Email)
-                        </span>
-                    </div>                                           
+        if (post.Published)
+        {
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-5 col-sm-12 col-xs-12 how-img">
+                    <img src="@post.ImageUrl" class="rounded-circle img-fluid" alt=""/>
                 </div>
-            </div>
-        </div>
-        <hr/>
+                <div class="col-xl-6 col-lg-6 col-md-7 col-sm-12 col-xs-12">
+                    <h4>
+                        <a asp-action="Post" asp-controller="Blog" asp-route-id="@post.Id">@post.Title</a>
+                    </h4>
+                    <p class="text-muted">
+                        @post.ShortText
+                    </p>
+                    <div class="row">
+                        <div class="col">
+                            <span class="badge badge-light badge-secondary mr-auto">
+                                @post.DateCreated.ToString(CultureInfo.CurrentCulture)
+                            </span>
+                        </div>
+                        <div class="col">
+                            <span class="badge badge-light badge-secondary ml-auto">
+                                Author: @(post.IdentityUser.Email)
+                            </span>
+                        </div>                                           
+                    </div>
+                </div>
+            </div>    
+            <hr/>
+        }        
     }
 </div>

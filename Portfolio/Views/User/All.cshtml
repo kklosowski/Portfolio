@@ -6,6 +6,7 @@
         <th>Email</th>
         <th>Username</th>
         <th>Roles</th>
+        @* <th>Blocked</th> *@
         <th class="text-center">Options</th>
     </tr>
     </thead>
@@ -21,10 +22,13 @@
                         @role
                     }
                 </td>
+                @* <td> *@
+                @*     @user.LockoutEnabled *@
+                @* </td> *@
                 <td>
                     <div class="btn-group btn-group-sm float-right" role="group">
                         @* <a class="btn btn-secondary" asp-controller="User" asp-action="View" asp-route-id="@user.Id">View</a> *@
-                        <a class="btn btn-secondary" asp-controller="User" asp-action="Block" asp-route-id="@user.Id">Block</a>
+                        @* <a class="btn btn-secondary" asp-controller="User" asp-action="Block" asp-route-id="@user.Id">@(user.LockoutEnabled?"Unblock":"Block")</a> *@
                         <a class="btn btn-secondary" asp-controller="User" asp-action="Remove" asp-route-id="@user.Id">Remove</a>
                     </div>
                 </td>
