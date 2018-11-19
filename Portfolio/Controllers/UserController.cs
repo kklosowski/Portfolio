@@ -8,6 +8,7 @@ using Portfolio.ViewModels;
 
 namespace Portfolio.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
         private readonly ApplicationDbContext _applicationDbContext;
@@ -21,15 +22,21 @@ namespace Portfolio.Controllers
             _roleManager = roleManager;
         }
 
-        [Authorize(Roles = "Admin")]
         public IActionResult All()
         {
-//            UsersAllViewModel usersAllViewModel = new UsersAllViewModel()
-//            {
-//                Users = _userManager.Users,
-//                RoleManager = _roleManager
-//            };
-            return View(_userManager);
+            return View();
         }
+
+        [HttpPost]
+        public IActionResult Block(string id)
+        {
+            var user = _userManager.Users.FirstOrDefault(x => x.Id == id);
+            user.LockoutEnabled = true;
+            _userManager.UpdateAsync(user);
+
+            return RedirectToAction("Users", "Admin");
+        }
+
+        
     }
 }

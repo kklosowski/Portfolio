@@ -52,6 +52,23 @@
     <script src="~/lib/twitter-bootstrap/js/bootstrap.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/navbar-shrinker.js"></script>
+    <link rel="stylesheet" href="~/lib/sceditor/minified/themes/modern.min.css" />
+    <script src="~/lib/sceditor/minified/sceditor.min.js"></script>
+    <script src="~/lib/sceditor/minified/formats/xhtml.js"></script>
+    <script>
+        var textarea = document.getElementById('bbTextArea');
+        sceditor.create(textarea, {
+            plugins: "undo",
+            format: 'xhtml',
+            style: 'minified/themes/content/default.min.css',
+            width: "100%",
+            height: "100%",
+            autoExpand: true,
+            toolbarExclude: "superscript,subscript,strike,email,ltr,rtl,emoticon",
+            emoticonsEnabled: false
+        });
+    </script>
+
 </environment>
 <environment exclude="Development, Production">
     <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"

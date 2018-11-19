@@ -17,7 +17,9 @@
             </div>
         </div>
         <div class="row post-text-row">
-            <p>@Model.post.LongText</p>
+            <div class="w-100">
+                @Html.Raw(Model.post.LongText)
+            </div>
         </div>
         <span class="badge badge-secondary">@Model.post.DateCreated.ToString(CultureInfo.InvariantCulture)</span>
         <hr />

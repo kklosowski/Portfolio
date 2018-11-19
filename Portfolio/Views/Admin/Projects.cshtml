@@ -1,0 +1,12 @@
+﻿@model List<Project>
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<partial name="~/Views/Project/All.cshtml" model="Model" />
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $("#projectsBtn").addClass("list-group-item-secondary")
+</script>

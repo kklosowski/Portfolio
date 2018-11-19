@@ -1,0 +1,11 @@
+﻿@model List<Post>
+@{
+    Layout = "_AdminLayout";
+}
+
+<partial name="~/Views/Blog/PostList.cshtml" model="Model" />
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $("#postsBtn").addClass("list-group-item-secondary")
+</script>

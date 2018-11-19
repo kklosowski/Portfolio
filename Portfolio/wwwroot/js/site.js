@@ -1,4 +1,12 @@
-﻿(function($) {
+﻿(function ($) {
+
+    function changeActiveMenuItem(itemId, removeList) {
+        removeList.forEach(x, function() {
+            $(x).removeClass("list-group-item-dark");
+        });
+        $("#itemId").addClass("list-group-item-dark");
+    }
+
     //Comment text max length alert
     $("#characterLeft").text("140 characters left");
     $("#message").keyup(function() {
@@ -18,7 +26,7 @@
 
     $("#ctaButton").on("click", function () {
         $('html, body').animate({
-            scrollTop: $("#mainContent").offset().top - 90
+            scrollTop: $("#mainContent").offset().top - 75
         }, 1500);
     })
 

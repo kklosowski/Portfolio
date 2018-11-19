@@ -1,8 +1,12 @@
-﻿@model Project
+﻿
+@using System.Web
+@using Microsoft.Security.Application
+@model Project
 
 @{
     ViewData["Title"] = "Index";
 }
+
 
 <div class="container container-fluid  ">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-11 col-xl-11 mx-auto">
@@ -17,7 +21,9 @@
             </div>
         </div>
         <div class="row post-text-row">
-            <p>@Model.LongDescription</p>
+            <p id="longDescription">
+                @Html.Raw(@Model.LongDescription))
+            </p>
         </div>
     </div>
 </div>

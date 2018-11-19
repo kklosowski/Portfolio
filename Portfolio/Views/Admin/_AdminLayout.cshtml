@@ -5,14 +5,16 @@
 
 <div class="container">
     <div class="row">
-        <div class="list-group col-md-3 py-0">
-            <a asp-controller="User" asp-action="All" class="list-group-item list-group-item-dark"><span>Users</span></a>
-            <a asp-controller="Project" asp-action="All" class="list-group-item"><span>Projects</span></a>
-            <a asp-controller="Blog" asp-action="Index" class="list-group-item"><span>Posts</span></a>
+        <div class="list-group col-md-2 py-0">
+            <a id="usersBtn" asp-controller="Admin" asp-action="Users" class="list-group-item"><span>Users</span></a>
+            <a id="projectsBtn" asp-controller="Admin" asp-action="Projects" class="list-group-item"><span>Projects</span></a>
+            <a id="postsBtn" asp-controller="Admin" asp-action="Posts" class="list-group-item"><span>Posts</span></a>
         </div>
 
-        <div class="col-md-9">
+        <div class="col-md-10">
             @RenderBody()
         </div>
     </div>
 </div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>

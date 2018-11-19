@@ -217,6 +217,8 @@ namespace Portfolio.Data.Migrations
 
                     b.Property<string>("LongText");
 
+                    b.Property<bool>("Published");
+
                     b.Property<string>("ShortText")
                         .HasMaxLength(300);
 

@@ -3,27 +3,36 @@
 @{
     ViewData["Title"] = "All";
 }
-<table class="table">
+<table class="table table-hover">
+    
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th class="text-right pr-5">Options</th>
+        </tr>
+    </thead>
 
     @foreach (var project in Model)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => project.Title)
+                @project.Title
             </td>
             <td>
-                <div class="float-right">
-                    <a asp-action="Edit" asp-route-id="@project.Id">Edit</a> |
-                    <a asp-action="Index" asp-route-id="@project.Id">Display</a> |
-                    <a asp-action="Delete" asp-route-id="@project.Id">Delete</a>
+                <div class="btn-group btn-group-sm float-right" role="group">
+                    <a class="btn btn-secondary" asp-controller="Project" asp-action="Edit" asp-route-id="@project.Id">Edit</a>
+                    <a class="btn btn-secondary" asp-controller="Project" asp-action="Index" asp-route-id="@project.Id">Display</a>
+                    <a class="btn btn-secondary" asp-controller="Project" asp-action="Delete" asp-route-id="@project.Id">Delete</a>
                 </div>
             </td>
         </tr>
     }
 
     <tr>
-        <a asp-area="" asp-controller="Project" asp-action="Index" asp-route-id="Create" class="nav-link">
-            <button class="btn btn-primary">Add new project</button>
-        </a>
+        <td colspan="4" class="text-right">
+            <a asp-controller="Project" asp-action="Index" asp-route-id="Create" class="nav-link pr-0">
+                <button class="btn btn-secondary">Add new project</button>
+            </a>
+        </td>
     </tr>
 </table>

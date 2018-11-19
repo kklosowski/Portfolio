@@ -21,11 +21,11 @@
 </div>
 
 
-<div class="pb-5">
+<div class="pb-5 mb-5">
     <div class="container body-content rounded mt-3 body-shadow" id="mainContent">
 
         <div class="row">
-            <div class="col-lg-6 col-lg-offset-3 text-center mx-auto pt-5">
+            <div class="col-lg-6 col-lg-offset-3 text-center mx-auto">
                 <h2><span class="ion-minus"></span>Projects<span class="ion-minus"></span></h2>
             </div>
         </div>
@@ -33,7 +33,7 @@
             @foreach (var project in Model.Projects)
             {
                 <div class="card text-center">
-                    <img class="card-img-top img-thumbnail" src="@project.ImageUrl" alt="Project Thumbnail">
+                    <img class="card-img-top " src="@project.ImageUrl" alt="Project Thumbnail">
                     <div class="card-body pb-2">
                         <h4 class="card-title">
                             <a asp-controller="Project" asp-action="Index" asp-route-id="@project.Id">@project.Title</a>

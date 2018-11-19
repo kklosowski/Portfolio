@@ -33,6 +33,8 @@ namespace Portfolio.Models
 
         public List<Comment> Comments { get; set; }
 
+        public bool Published { get; set; }
+
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }
 

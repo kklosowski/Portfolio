@@ -1,0 +1,47 @@
+﻿@model List<Post>
+
+@{
+    ViewData["Title"] = "All";
+}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Pulished</th>
+            <th class="text-center" colspan="3">Options</th>
+        </tr>
+    </thead>
+
+    @foreach (var post in Model)
+    {
+        <tr scope="row">
+            <td scope="col">
+                <span>@post.Title</span>
+            </td>
+            <td>
+                @post.IdentityUser.UserName
+            </td>
+            <td class="text-center">
+                <input type="checkbox" value="@post.Published" disabled="true"/>
+            </td>
+            <td scope="col">
+                <div class="btn-group btn-group-sm" role="group">
+                    <a class="btn btn-secondary" asp-action="PostEdit" asp-route-id="@post.Id">Edit</a>
+                    <a class="btn btn-secondary" asp-action="Post" asp-route-id="@post.Id">Display</a>
+                    <a class="btn btn-secondary" asp-action="PostDelete" asp-route-id="@post.Id">Delete</a>
+                </div>
+            </td>
+        </tr>
+    }
+
+    <tr scope="row">
+        <td colspan="4" class="text-right">
+            <div class="btn-group" role="group">
+                <a class="btn btn-secondary" asp-controller="Blog" asp-action="Write" class="nav-link pr-0">
+                    Add new post
+                </a>
+            </div>
+        </td>
+    </tr>
+</table>

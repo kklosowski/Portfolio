@@ -1,5 +1,6 @@
 ﻿@model Post
 
+
 <form asp-action="Write">
     <div class="form-group">
         <label asp-for="Title">Project Title</label>
@@ -18,11 +19,9 @@
     </div>
     <div class="form-group">
         <label asp-for="LongText" class="control-label"></label>
-        <textarea rows="5" asp-for="LongText" class="form-control"></textarea>
+        <textarea id="bbTextArea" rows="10" asp-for="LongText" class="form-control"></textarea>
         <span asp-validation-for="LongText" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-
-
