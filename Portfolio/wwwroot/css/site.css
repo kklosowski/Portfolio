@@ -47,21 +47,31 @@ hr { padding-top: 15px; }
 }
 
 @media screen and (max-width: 299px) {
-    .jumbotron { padding-top: 10vh; }
+    .main-jumbotron .jumbotron { padding-top: 10vh; }
 
-    .full-width { min-height: 45vh; }
+    .main-jumbotron .full-width {
+        min-height: 45vh;
+    }
 }
 
 @media screen and (min-width: 300px) and (max-width: 767px) {
-    .jumbotron { padding-top: 17vh; }
+    .main-jumbotron .jumbotron {
+        padding-top: 17vh;
+    }
 
-    .full-width { min-height: 54vh; }
+    .main-jumbotron .full-width {
+        min-height: 54vh;
+    }
 }
 
 @media screen and (min-width: 768px) {
-    .jumbotron { padding-top: 25vh; }
+    .main-jumbotron .jumbotron {
+        padding-top: 25vh;
+    }
 
-    .full-width { min-height: 70vh; }
+    .main-jumbotron .full-width {
+        min-height: 70vh;
+    }
 }
 
 .card {
