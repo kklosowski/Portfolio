@@ -1,14 +1,15 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject UserManager<IdentityUser> UserManager
-<table class="table table-hover">
+
+<table class="table table-responsive-md table-hover">
     <thead>
-    <tr>
-        <th>Email</th>
-        <th>Username</th>
-        <th>Roles</th>
-        @* <th>Blocked</th> *@
-        <th class="text-center">Options</th>
-    </tr>
+        <tr>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Roles</th>
+            @* <th>Blocked</th> *@
+            <th class="text-center">Options</th>
+        </tr>
     </thead>
     <tbody>
         @foreach (var user in UserManager.Users.ToList())
@@ -29,10 +30,36 @@
                     <div class="btn-group btn-group-sm float-right" role="group">
                         @* <a class="btn btn-secondary" asp-controller="User" asp-action="View" asp-route-id="@user.Id">View</a> *@
                         @* <a class="btn btn-secondary" asp-controller="User" asp-action="Block" asp-route-id="@user.Id">@(user.LockoutEnabled?"Unblock":"Block")</a> *@
-                        <a class="btn btn-secondary" asp-controller="User" asp-action="Remove" asp-route-id="@user.Id">Remove</a>
+                        <a class="btn btn-secondary" data-toggle="modal" data-target="#removeModal" data-title="@user.UserName" data-id="@user.Id">Remove</a>
                     </div>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<div class="modal fade" id="removeModal" tabindex="-1" role="dialog" aria-labelledby="removeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="removeModalLabel">Do you want to delete this user?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="modalCancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <form asp-controller="User" asp-action="Remove">
+                    <input id="idToDelete" name="Id" type="hidden" />
+                    <button type="submit" class="btn btn-danger" id="modalConfirm">Remove</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/modal-confirm.js"></script>

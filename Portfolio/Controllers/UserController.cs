@@ -36,7 +36,8 @@ namespace Portfolio.Controllers
             return RedirectToAction("Users", "Admin");
         }
 
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Remove(string id)
         {
             var user = _userManager.Users.FirstOrDefault(x => x.Id == id);        

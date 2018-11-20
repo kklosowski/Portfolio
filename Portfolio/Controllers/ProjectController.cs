@@ -108,33 +108,19 @@ namespace Portfolio.Controllers
             return View(projects);
         }
 
-        // GET: Project/Delete/{id}
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id.HasValue)
-            {
-                var project = await _applicationDbContext.Projects.FirstOrDefaultAsync(x => x.Id == id);
-                if (project != null)
-                    return View(project);
-                return NotFound();
-            }
-
-            return NotFound();
-        }
 
         // POST: Project/Delete/{id}
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var project = await _applicationDbContext.Projects.FindAsync(id);
             _applicationDbContext.Projects.Remove(project);
             await _applicationDbContext.SaveChangesAsync();
 
-            return RedirectToAction("All", "Project");
+            return RedirectToAction("Projects", "Admin");
         }
     }
 }

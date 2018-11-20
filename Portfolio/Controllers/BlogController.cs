@@ -102,6 +102,68 @@ namespace Portfolio.Controllers
             return View();
         }
 
-        //TODO: Implement edit and delete
+        // POST: Blog/PostDelete/{id}
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> PostDelete(int id)
+        {
+            var post = await _applicationDbContext.Posts.FindAsync(id);
+            _applicationDbContext.Posts.Remove(post);
+            await _applicationDbContext.SaveChangesAsync();
+
+            return RedirectToAction("Posts", "Admin");
+        }
+
+        // GET: Blog/PostEdit/{id}
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> PostEdit(int? id)
+        {
+            if (id.HasValue)
+            {
+                var post = await _applicationDbContext.Posts.FindAsync(id);
+                if (post != null)
+                    return View(post);
+                return NotFound();
+            }
+
+            return NotFound();
+        }
+
+        //POST Blog/PostEdit/{id}
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> PostEdit(int id,
+            [Bind("Id, Title, ShortText, LongText, ImageUrl")]
+            Post post)
+        {
+            if (id != post.Id) return NotFound();
+
+            if (ModelState.IsValid)
+            {
+                var toUpdate = _applicationDbContext.Posts.First(x => x.Id == id);
+                try
+                {
+                    toUpdate.Title = post.Title;
+                    toUpdate.ShortText = post.ShortText;
+                    toUpdate.LongText = post.LongText;
+                    toUpdate.ImageUrl = post.ImageUrl;
+
+                    _applicationDbContext.Update(toUpdate);
+                    await _applicationDbContext.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (_applicationDbContext.Posts.Any(x => x.Id == toUpdate.Id))
+                        throw;
+                    return NotFound();
+                }
+
+                return RedirectToAction("Post", "Blog", new { id = toUpdate.Id });
+            }
+
+            return View(post);
+        }
     }
 }

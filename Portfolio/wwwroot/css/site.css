@@ -29,8 +29,14 @@
     height: 250px;
 }
 
+.icon-list i{
+    font-size: 1.5rem;
+    color: whitesmoke;
+}
 
-.navbar { margin-bottom: 30px; }
+.navbar {
+    margin-bottom: 30px;
+}
 
 hr { padding-top: 15px; }
 
@@ -234,8 +240,6 @@ hr { padding-top: 15px; }
     padding-bottom: 0;
     padding-top: 0;
 }
-
-#mainNav.navbar-shrink * { color: blue; }
 
 #mainNav.navbar-shrink .navbar-brand {
     color: azure;

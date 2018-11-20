@@ -1,0 +1,29 @@
+﻿@model Post
+
+
+<form asp-action="PostEdit" asp-route-id="@Model.Id">
+    <div class="form-group">
+        <label asp-for="Title">Project Title</label>
+        <input asp-for="Title" type="text" class="form-control">
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ImageUrl" class="control-label"></label>
+        <input asp-for="ImageUrl" class="form-control" />
+        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ShortText" class="control-label"></label>
+        <textarea rows="2" asp-for="ShortText" class="form-control"></textarea>
+        <span asp-validation-for="ShortText" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LongText" class="control-label"></label>
+        <textarea id="bbTextArea" rows="10" asp-for="LongText" class="form-control"></textarea>
+        <span asp-validation-for="LongText" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-secondary">Confirm changes</button>
+    <a asp-controller="Blog" asp-action="Post" asp-route-id="@Model.Id" class="btn btn-secondary">Drop changes</a>
+</form>
+

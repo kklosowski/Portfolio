@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="~/css/zigzag.css"/>
         <link rel="stylesheet" href="~/css/cards.css"/>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet"> 
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> 
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     </environment>
     <environment exclude="Development, Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/4.1.1/css/bootstrap.min.css"
@@ -37,7 +37,15 @@
                 <a asp-area="" asp-controller="Blog" asp-action="Index" class="nav-link js-scroll-trigger">Blog</a>
             </li>
         </ul>
-        <partial name="_LoginPartial"/>
+        <ul class="nav navbar-nav ml-auto text-light icon-list">
+            <li class="nav-item">
+                <a class="nav-link" href="https://github.com/kklosowski"><i class="fab fa-2x fa-github-square"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://www.linkedin.com/in/kklosowski/"><i class="fab fa-2x fa-linkedin"></i></a>
+            </li>
+        </ul>
+
     </div>
 </nav>
 

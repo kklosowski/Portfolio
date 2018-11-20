@@ -3,14 +3,16 @@
 @{
     ViewData["Title"] = "All";
 }
-<table class="table table-hover">
+
+
+<table class="table table-responsive-md table-hover">
     <thead>
-        <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Pulished</th>
-            <th class="text-center" colspan="3">Options</th>
-        </tr>
+    <tr> 
+        <th>Title</th>
+        <th>Author</th>
+        <th>Pulished</th>
+        <th class="text-center" colspan="3">Options</th>
+    </tr>
     </thead>
 
     @foreach (var post in Model)
@@ -23,13 +25,13 @@
                 @post.IdentityUser.UserName
             </td>
             <td class="text-center">
-                <input type="checkbox" @(post.Published?"checked":"") disabled="true"/>
+                <input type="checkbox" @(post.Published ? "checked" : "") disabled="true"/>
             </td>
             <td scope="col">
                 <div class="btn-group btn-group-sm" role="group">
-                    <a class="btn btn-secondary" asp-action="PostEdit" asp-route-id="@post.Id">Edit</a>
+                    <a class="btn btn-secondary" asp-controller="Blog" asp-action="PostEdit" asp-route-id="@post.Id">Edit</a>
                     <a class="btn btn-secondary" asp-controller="Blog" asp-action="Post" asp-route-id="@post.Id">Display</a>
-                    <a class="btn btn-secondary" asp-action="PostDelete" asp-route-id="@post.Id">Delete</a>
+                    <a class="btn btn-secondary" data-toggle="modal" data-target="#removeModal" data-title="@post.Title" data-id="@post.Id">Delete</a>
                 </div>
             </td>
         </tr>
@@ -45,3 +47,30 @@
         </td>
     </tr>
 </table>
+
+
+<div class="modal fade" id="removeModal" tabindex="-1" role="dialog" aria-labelledby="removeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="removeModalLabel">Do you want to delete this post?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="modalCancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <form asp-controller="Blog" asp-action="PostDelete">
+                    <input id="idToDelete" name="Id" type="hidden" />
+                    <button type="submit" class="btn btn-danger" id="modalConfirm">Remove</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/modal-confirm.js"></script>
