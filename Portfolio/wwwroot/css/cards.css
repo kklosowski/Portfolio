@@ -20,16 +20,21 @@ h2 {
 
 #project-deck .card {
     background-color: #FFF;
-    border: 1px solid #eceaea;
-    margin: 10px;
+    border: 2px solid #eceaea;
+    margin: 12px;
 }
 
 #project-deck .card-block {
     padding: 15px;
 }
 
+.card-img-top {
+    padding: 0 !important;
+    /* filter: grayscale(30%); */
+}
+
 .btn.btn-default {
-    background-color: cornflowerblue;
+    background-color: #343a40;
     color: #fff;
     border-radius: 0;
     border: none;
@@ -38,5 +43,4 @@ h2 {
     font-weight: 600;
     margin-top: 10px;
     width: 44%;
-
 }

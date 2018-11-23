@@ -2,12 +2,21 @@
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }
-<ul class="nav nav-pills nav-stacked">
-    <li class="@ManageNavPages.IndexNavClass(ViewContext)"><a asp-page="./Index">Profile</a></li>
-    <li class="@ManageNavPages.ChangePasswordNavClass(ViewContext)"><a id="change-password" asp-page="./ChangePassword">Password</a></li>
-    @if (hasExternalLogins)
-    {
-        <li class="@ManageNavPages.ExternalLoginsNavClass(ViewContext)"><a id="external-login" asp-page="./ExternalLogins">External logins</a></li>
-    }
-    <li class="@ManageNavPages.PersonalDataNavClass(ViewContext)"><a asp-page="./PersonalData">Personal data</a></li>
-</ul>
+@* <ul class="nav nav-pills nav-stacked"> *@
+@*     <li class="@ManageNavPages.IndexNavClass(ViewContext)"><a asp-page="./Index">Profile</a></li> *@
+@*     <li class="@ManageNavPages.ChangePasswordNavClass(ViewContext)"><a id="change-password" asp-page="./ChangePassword">Password</a></li> *@
+@*     @if (hasExternalLogins) *@
+@*     { *@
+@*         <li class="@ManageNavPages.ExternalLoginsNavClass(ViewContext)"><a id="external-login" asp-page="./ExternalLogins">External logins</a></li> *@
+@*     } *@
+@*     <li class="@ManageNavPages.PersonalDataNavClass(ViewContext)"><a asp-page="./PersonalData">Personal data</a></li> *@
+@* </ul> *@
+
+    <div class="list-group py-0">
+        <a asp-page="./Index" class="list-group-item"><span>Profile</span></a>
+        <a asp-page="./ChangePassword" class="list-group-item"><span>Change Password</span></a>
+        <a asp-page="./PersonalData" class="list-group-item"><span>Posts</span></a>
+    </div>
+    
+
+<script src="~/lib/jquery/dist/jquery.js"></script>

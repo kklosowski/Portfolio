@@ -20,16 +20,16 @@
     background: #f7f8f9;
 }
 
-    .divided::after {
-        background: linear-gradient(#f0f7fd 0, rgb(41, 17, 41) 50%, #f0f7fd 100%);
-        width: 1px;
-        top: 100px;
-        bottom: 100px;
-        left: 50%;
-        height: auto;
-        right: auto;
-        position: absolute;
-    }
+.divided::after {
+    background: linear-gradient(#f0f7fd 0, rgb(41, 17, 41) 50%, #f0f7fd 100%);
+    width: 1px;
+    top: 100px;
+    bottom: 100px;
+    left: 50%;
+    height: auto;
+    right: auto;
+    position: absolute;
+}
 
 @media (max-width: 768px) {
     .divided::after {
@@ -40,7 +40,7 @@
         left: 20px;
         right: 20px;
         height: 1px;
-        width: 100%;
+        width: calc(100% - 40px);
     }
 }
 

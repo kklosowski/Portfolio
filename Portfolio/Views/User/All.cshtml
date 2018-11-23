@@ -3,39 +3,61 @@
 
 <table class="table table-responsive-md table-hover">
     <thead>
-        <tr>
-            <th>Email</th>
-            <th>Username</th>
-            <th>Roles</th>
-            @* <th>Blocked</th> *@
-            <th class="text-center">Options</th>
-        </tr>
+    <tr>
+        <th>Email</th>
+        <th>Username</th>
+        <th>Roles</th>
+        @* <th>Blocked</th> *@
+        <th class="text-center">Options</th>
+    </tr>
     </thead>
     <tbody>
-        @foreach (var user in UserManager.Users.ToList())
-        {
-            <tr>
-                <td>@user.Email</td>
-                <td>@user.UserName</td>
-                <td>
-                    @foreach (var role in UserManager.GetRolesAsync(user).Result)
-                    {
-                        @role
-                    }
-                </td>
-                @* <td> *@
-                @*     @user.LockoutEnabled *@
-                @* </td> *@
-                <td>
-                    <div class="btn-group btn-group-sm float-right" role="group">
-                        @* <a class="btn btn-secondary" asp-controller="User" asp-action="View" asp-route-id="@user.Id">View</a> *@
-                        @* <a class="btn btn-secondary" asp-controller="User" asp-action="Block" asp-route-id="@user.Id">@(user.LockoutEnabled?"Unblock":"Block")</a> *@
-                        <a class="btn btn-secondary" data-toggle="modal" data-target="#removeModal" data-title="@user.UserName" data-id="@user.Id">Remove</a>
-                    </div>
-                </td>
-            </tr>
-        }
+    @foreach (var user in UserManager.Users.ToList())
+    {
+        <tr>
+            <td>@user.Email</td>
+            <td>@user.UserName</td>
+            <td>
+                @foreach (var role in UserManager.GetRolesAsync(user).Result)
+                {
+                    @role
+                }
+            </td>
+            @* <td> *@
+            @*     @user.LockoutEnabled *@
+            @* </td> *@
+            <td>
+                <div class="btn-group btn-group-sm float-right" role="group">
+                    @* <a class="btn btn-secondary" asp-controller="User" asp-action="View" asp-route-id="@user.Id">View</a> *@
+                    @* <a class="btn btn-secondary" asp-controller="User" asp-action="Block" asp-route-id="@user.Id">@(user.LockoutEnabled?"Unblock":"Block")</a> *@
+                    <a class="btn btn-secondary" data-toggle="modal" data-target="#removeModal" data-title="@user.UserName" data-id="@user.Id">Remove</a>
+                </div>
+            </td>
+        </tr>
+    }
+    <tr scope="row">
+        <form>
+            <td class="form-group">
+                <input type="text" class="form-control">
+            </td>
+            <td class="form-group">
+                <input class="form-control" />
+            </td>
+            <td class="form-group">
+                <input type="text" class="form-control"></input>
+            </td>
+        </form>
+        <td colspan="4" class="text-right">
+            <div class="btn-group" role="group">
+                <a class="btn btn-secondary" href="" class="nav-link pr-0">
+                    Add new user
+                </a>
+            </div>
+        </td>
+    </tr>
     </tbody>
+    
+
 </table>
 
 <div class="modal fade" id="removeModal" tabindex="-1" role="dialog" aria-labelledby="removeModalLabel" aria-hidden="true">
