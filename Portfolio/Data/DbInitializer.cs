@@ -29,6 +29,30 @@ namespace Portfolio.Data
             _configuration = configuration;
         }
 
+        public async Task SeedPosts()
+        {
+            _context.Database.EnsureCreated();
+
+            if (!_context.Posts.Any())
+            {
+                var userManager = _serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
+                var projectsPath = Path.Combine(_hosting.ContentRootPath, "Data/Posts.json");
+                var jsonPosts = File.ReadAllText(projectsPath);
+                var posts = JsonConvert.DeserializeObject<IEnumerable<Post>>(jsonPosts);
+
+                foreach (var post in posts)
+                {
+                    var user = await userManager.FindByEmailAsync("Member1@email.com");
+                    post.IdentityUser = user;
+                    post.DateCreated = DateTime.Now;
+                }
+
+                _context.AddRange(posts);
+                _context.SaveChanges();
+            }
+        }
+
         public void SeedProjects()
         {
             _context.Database.EnsureCreated();
@@ -48,22 +72,26 @@ namespace Portfolio.Data
         {
             _context.Database.EnsureCreated();
 
-            IdentityUser user = await _userManager.FindByEmailAsync("kamil.klosowski@yahoo.com");
-            if (user == null)
+            for (int i = 1; i <= 5; i++)
             {
-                user = new IdentityUser()
+                IdentityUser user = await _userManager.FindByEmailAsync($"Customer{i}@email.com");
+                if (user == null)
                 {
-                    UserName = "kklosowski",
-                    Email = "kamil.klosowski@yahoo.com"
-                };
+                    user = new IdentityUser()
+                    {
+                        UserName = $"Customer{i}@email.com",
+                        Email = $"Customer{i}@email.com"
+                    };
 
-                var result = await _userManager.CreateAsync(user, "Passowrd1#");
+                    var result = await _userManager.CreateAsync(user, "Password123!");
 
-                if (result != IdentityResult.Success)
-                {
-                    throw new InvalidOperationException("Error while seeding users" + result.ToString());
+                    if (result != IdentityResult.Success)
+                    {
+                        throw new InvalidOperationException("Error while seeding users" + result.ToString());
+                    }
                 }
             }
+            
         }
 
         public async Task CreateRoles()
@@ -87,15 +115,11 @@ namespace Portfolio.Data
             // creating a super user who could maintain the web app
             var admin = new IdentityUser
             {
-//                UserName = _configuration.GetSection("UserSetting")["UserEmail"],
-//                Email = _configuration.GetSection("UserSetting")["UserEmail"]
-                UserName = "eterdemon@abc.com",
-                Email = "eterdemon@abc.com"
+                UserName = "Member1@email.com",
+                Email = "Member1@email.com"
             };
             
-//            string adminPassword = _configuration.GetSection("UserSetting")["UserPassword"];
-            string adminPassword = "P@ssw0rd";
-//            var user = await userManager.FindByEmailAsync(_configuration.GetSection("UserSetting")["UserEmail"]);
+            string adminPassword = "Password123!";
             var user = await userManager.FindByEmailAsync(admin.Email);
             
             if (user == null)

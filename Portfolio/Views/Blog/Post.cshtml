@@ -32,8 +32,7 @@
 
         <div class="col-xl-7 col-lg-8 col-md-12 col-sm-12 col-xs-12">
             <br style="clear: both">
-            <form asp-action="Comment" asp-route-postId="@Model.post.Id" class="form-group">
-                <script> console.log(@Model.post.Id)</script>
+            <form asp-action="Comment" asp-route-postId="@Model.post.Id" method="post" class="form-group">
                 <label id="messageLabel" for="message">
                     <b>Comment</b>
                 </label>

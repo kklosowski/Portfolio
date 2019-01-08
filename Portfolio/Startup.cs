@@ -62,15 +62,18 @@ namespace Portfolio
             }
             else
             {
+                app.Use(async (context, next) =>
+                {
+                    context.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");
+                    await next();
+                });
+
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-            //Logger snippet
-//            var logger = _loggerFactory.CreateLogger("MyLogger");
-//            logger.LogDebug("Calling the ping action");
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

@@ -145,8 +145,6 @@ hr { padding-top: 15px; }
 
 .red { color: red; }
 
-/* .row { padding-top: 20px; } */
-
 
 .list-group {
     float: left;
@@ -226,9 +224,6 @@ hr { padding-top: 15px; }
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    /* -webkit-box-shadow: inset 0px -35px 20px -5px rgba(0,0,0,0.5); */
-    /* -moz-box-shadow: inset 0px -35px 20px -5px rgba(0,0,0,0.5); */
-    /* box-shadow: inset 0px -35px 20px -5px rgba(41,17,41,0.7); */
 }
 
 
@@ -246,8 +241,6 @@ hr { padding-top: 15px; }
     margin-top: -56px;
 }
 
-
-/* TEST */
 
 #mainNav {
     -moz-transition: padding-top 0.5s, padding-bottom 0.5s, background-color 0.5s;

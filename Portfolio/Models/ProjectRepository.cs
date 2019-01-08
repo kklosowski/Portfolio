@@ -39,7 +39,8 @@ namespace Portfolio.Data
 
         public void UpdateProject(Project project)
         {
-            throw new NotImplementedException();
+            _applicationDbContext.Projects.Update(project);
+            _applicationDbContext.SaveChanges();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Security.Claims;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -33,6 +34,7 @@ namespace Portfolio.Controllers
             return View(posts);
         }
 
+        // GET: Blog/Post/{id}
         public IActionResult Post(int id)
         {
             var isAdmin = User.IsInRole("Admin");
@@ -63,6 +65,7 @@ namespace Portfolio.Controllers
                 comment.DateCreated = DateTime.Now;
                 comment.IdentityUser = _userManager.Users.First(x => x.Id == userId);
                 comment.Post = _applicationDbContext.Posts.First(p => p.Id == postId);
+                comment.Text = Regex.Replace(comment.Text, "<.*?>", String.Empty);
 
                 _applicationDbContext.Comments.Add(comment);
                 await _applicationDbContext.SaveChangesAsync();
@@ -92,6 +95,7 @@ namespace Portfolio.Controllers
 
                 post.DateCreated = DateTime.Now;
                 post.IdentityUser = _userManager.Users.First(x => x.Id == userId);
+                post.Published = true;
 
                 _applicationDbContext.Posts.Add(post);
                 await _applicationDbContext.SaveChangesAsync();

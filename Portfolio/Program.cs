@@ -33,7 +33,8 @@ namespace Portfolio
                 var initializer = scope.ServiceProvider.GetService<DbInitializer>();
                 initializer.SeedProjects();
                 initializer.CreateRoles().Wait();
-                initializer.SeedUsersAsync().Wait();               
+                initializer.SeedUsersAsync().Wait();
+                initializer.SeedPosts().Wait();
             }
         }
     }

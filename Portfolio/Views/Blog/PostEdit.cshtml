@@ -1,7 +1,7 @@
 ﻿@model Post
 
 
-<form asp-action="PostEdit" asp-route-id="@Model.Id">
+<form asp-action="PostEdit" asp-route-id="@Model.Id" method="post">
     <div class="form-group">
         <label asp-for="Title">Project Title</label>
         <input asp-for="Title" type="text" class="form-control">

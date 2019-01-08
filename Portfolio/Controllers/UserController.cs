@@ -13,13 +13,11 @@ namespace Portfolio.Controllers
     {
         private readonly ApplicationDbContext _applicationDbContext;
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
 
         public UserController(ApplicationDbContext applicationDbContext, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _applicationDbContext = applicationDbContext;
             _userManager = userManager;
-            _roleManager = roleManager;
         }
 
         public IActionResult All()
@@ -40,8 +38,10 @@ namespace Portfolio.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Remove(string id)
         {
-            var user = _userManager.Users.FirstOrDefault(x => x.Id == id);        
-            _userManager.DeleteAsync(user);
+            var user = _userManager.Users.FirstOrDefault(x => x.Id == id);
+            var comments = _applicationDbContext.Comments.Where(x => x.IdentityUserId == id);
+            _applicationDbContext.RemoveRange(comments);
+            _userManager.DeleteAsync(user).Wait();
 
             return RedirectToAction("Users", "Admin");
         }
