@@ -1,1 +1,0 @@
-The application is currently hosted at: https://klosowski.azurewebsites.net  with login credentials according to the specification.
