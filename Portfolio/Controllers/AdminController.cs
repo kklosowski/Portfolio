@@ -1,7 +1,11 @@
 ﻿using System.Linq;
+using System.Net;
+using System.Net.Mail;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Portfolio.Data;
 
 namespace Portfolio.Controllers
@@ -34,6 +38,6 @@ namespace Portfolio.Controllers
         public IActionResult Posts()
         {
             return View(_dbContext.Posts.Include(x => x.IdentityUser).ToList());
-        }
+        }   
     }
 }
