@@ -29,7 +29,7 @@ namespace Portfolio.Controllers
 
             var homeViewModel = new HomeViewModel()
             {
-                Projects = projects.ToList(),
+                Projects = projects.OrderBy(x => x.Id).ToList(),
             };
 
             return View(homeViewModel);

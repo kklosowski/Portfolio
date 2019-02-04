@@ -323,3 +323,12 @@ hr { padding-top: 15px; }
     display: inline-block;
     width: 100%;
 }
+
+.proj-thumb-full {
+    width: 100%;
+    float: right;
+}
+
+.post-text-row *{
+    max-width: 100%;
+}

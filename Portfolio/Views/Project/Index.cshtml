@@ -9,21 +9,19 @@
 
 
 <div class="container container-fluid  ">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-11 col-xl-11 mx-auto">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 mx-auto">
         <div class="row pb-3">
-            <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-xs-12 pb-3">
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 pb-3 mr-auto">
                 <h1 class="card-title">@Model.Title</h1>
                 <p class="lead">@Model.ShortDescription</p>
                 <span><a class="badge badge-secondary" href="@Model.GithubUrl">Github</a></span>
             </div>
-            <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-xs-12 ml-auto">
-                <img class="img-fluid rounded" src="@Model.ImageUrl" alt="Project Thumbnail">
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 ml-auto">
+                <img class="img-fluid rounded proj-thumb-full" src="@Model.ImageUrl" alt="Project Thumbnail">
             </div>
         </div>
-        <div class="row post-text-row">
-            <div>
+        <div class="row post-text-row pt-4">
                 @Html.Raw(@Model.LongDescription)
-            </div>
         </div>
     </div>
 </div>
