@@ -30,7 +30,7 @@
             </div>
         </div>
         <div class="card-deck row d-flex justify-content-around" id="project-deck">
-            @foreach (var project in Model.Projects)
+            @foreach (var project in Model.Projects.OrderBy(x => x.Id))
             {
                 <div class="card text-center">
                     <img class="card-img-top " src="@project.ImageUrl" alt="Project Thumbnail">
@@ -53,11 +53,11 @@
                 <img class="card-img-top" src="./images/github_logo.svg" alt="Project Thumbnail">
                 <div class="card-body pb-2">
                     <h4 class="card-title">Other Projects</h4>
-                    <p class="card-text text-justify p-2">Feel free to check out any of my other projects on my Github page.</p>
+                    <p class="card-text text-justify p-2">Feel free to check out any of my other projects on my Github profile.</p>
                 </div>
                 <div class="card-footer bg-transparent border-0 pt-0 pb-3 my-auto">
                     <div class="d-flex justify-content-around">
-                        <a class="btn btn-default" href="www.github.com/kklosowski">Github</a>
+                        <a class="btn btn-default" href="https://www.github.com/kklosowski">Github</a>
                     </div>
                 </div>
             </div>
@@ -69,7 +69,7 @@
     <div class="jumbotron w-100 bg-dark">
         <div class="container">
             <div class="col-lg-8 col-lg-offset-2 text-center mx-auto py-5">
-                <h2 class="text-light"><span class="ion-minus"></span>Technologies I use<span class="ion-minus"></span></h2>
+                <h2 class="text-light"><span class="ion-minus"></span>Technologies<span class="ion-minus"></span></h2>
                     <table class="table table-borderless bg-transparent text-left text-light border-0">
                         <tr>
                             <th>Front End</th>
@@ -112,7 +112,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-lg-offset-3 text-center mx-auto pt-2">
-                        <h2><span class="ion-minus"></span>My Education<span class="ion-minus"></span></h2>
+                        <h2><span class="ion-minus"></span>Education<span class="ion-minus"></span></h2>
                     </div>
                 </div>
                 <!--first section-->
@@ -141,7 +141,7 @@
                 <div class="row align-items-center justify-content-end how-it-works d-flex">
                     <div class="col-6 text-right">
                         <h5>Jagiellonian University .NET Development Course organized by Microsoft (2014-2015)</h5>
-                        <p>Junior .Net Developer certificate obtained after a one-year course organized by Microsoft at Jagiellonian University. Course revolved around both desktop and web development using C#, WPF and ASP.NET.</p>
+                        <p>Junior .Net Developer certificate obtained after a one-year course organized by Microsoft at Jagiellonian University. Course revolved around both desktop and web development using following technologies: C#, WPF, ASP.NET, EF, MSSQL.</p>
                     </div>
                     <div class="col-2 text-center full d-inline-flex justify-content-center align-items-center">
                         <div class="circle font-weight-bold">2</div>
@@ -213,13 +213,10 @@
                                         <a href="https://github.com/kklosowski"><i class="text-light fab fa-lg fa-github-square pr-3"></i><span>Github</span></a>
                                     </li>
                                     <li class="list-group-item text-light bg-dark">
-                                        <a href="https://facebook.com/kamil.artur.klosowski"><i class="text-light fab fa-lg fa-facebook-square pr-3"></i><span>Facebook</span></a>
-                                    </li>
-                                    <li class="list-group-item text-light bg-dark">
                                         <a href="~/files/Kamil Klosowski - CV.pdf"><i class="text-light fas fa-lg fa-file pr-3"></i><span>Resume</span></a>
                                     </li>
                                     <li class="list-group-item text-light bg-dark pr-0 d-flex d-inline-flex">
-                                        <a href="mailto:kamil.klosowski@yahoo.com" class="d-flex d-inline-flex"><i class="text-light fas fa-lg fa-envelope pr-3"></i><span>kamil.klosowski@yahoo.com</span></a>
+                                        <a href="mailto:kamil.klosowski@yahoo.com" class="d-flex d-inline-flex"><i class="text-light fas fa-lg fa-envelope pr-3"></i><span>Email</span></a>
                                     </li>
                                 </ul>
                             </div>
